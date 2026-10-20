@@ -1,0 +1,118 @@
+{{ 'aliens-interactive.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #Aliens-{{ section.id }} { padding-top: {{ section.settings.padding_top | times: 0.75 }}px; padding-bottom: {{ section.settings.padding_bottom | times: 0.75 }}px; }
+  @media (min-width: 750px) { #Aliens-{{ section.id }} { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; } }
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <section id="Aliens-{{ section.id }}" class="aliens-section page-width" aria-labelledby="AliensHeading-{{ section.id }}">
+    <header class="aliens-interactive-heading">
+      {% if section.settings.eyebrow != blank %}<p class="aliens-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+      <h2 id="AliensHeading-{{ section.id }}" class="aliens-title">{{ section.settings.heading | escape }}</h2>
+      {% if section.settings.text != blank %}<div class="aliens-text rte">{{ section.settings.text }}</div>{% endif %}
+    </header>
+    <div class="aliens-accordion">
+      {% for block in section.blocks %}
+        {% if block.settings.question != blank and block.settings.answer != blank %}
+          <details class="aliens-accordion__item" {{ block.shopify_attributes }}>
+            <summary>{{ block.settings.question | escape }}<span aria-hidden="true">+</span></summary>
+            <div class="aliens-accordion__answer rte">{{ block.settings.answer }}</div>
+          </details>
+        {% elsif request.design_mode %}
+          <div class="aliens-editor-note" {{ block.shopify_attributes }}>Add a question and answer in this block.</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "presets": [
+    {
+      "blocks": [
+        {
+          "type": "question"
+        },
+        {
+          "type": "question"
+        },
+        {
+          "type": "question"
+        }
+      ],
+      "name": "t:aliens.faq_accordion.presets_0_name"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "label": "t:aliens.faq_accordion.settings_0_label",
+      "id": "eyebrow"
+    },
+    {
+      "default": "GOOD QUESTIONS.",
+      "type": "text",
+      "label": "t:aliens.faq_accordion.settings_1_label",
+      "id": "heading"
+    },
+    {
+      "type": "richtext",
+      "label": "t:aliens.faq_accordion.settings_2_label",
+      "id": "text"
+    },
+    {
+      "default": "scheme-1",
+      "type": "color_scheme",
+      "label": "t:aliens.faq_accordion.settings_3_label",
+      "id": "color_scheme"
+    },
+    {
+      "min": 0,
+      "max": 120,
+      "label": "t:aliens.faq_accordion.settings_4_label",
+      "type": "range",
+      "step": 4,
+      "default": 64,
+      "unit": "px",
+      "id": "padding_top"
+    },
+    {
+      "min": 0,
+      "max": 120,
+      "label": "t:aliens.faq_accordion.settings_5_label",
+      "type": "range",
+      "step": 4,
+      "default": 64,
+      "unit": "px",
+      "id": "padding_bottom"
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "tag": "div",
+  "blocks": [
+    {
+      "type": "question",
+      "settings": [
+        {
+          "type": "text",
+          "label": "t:aliens.faq_accordion.blocks_0_settings_0_label",
+          "id": "question"
+        },
+        {
+          "type": "richtext",
+          "label": "t:aliens.faq_accordion.blocks_0_settings_1_label",
+          "id": "answer"
+        }
+      ],
+      "name": "t:aliens.faq_accordion.blocks_0_name"
+    }
+  ],
+  "name": "t:aliens.faq_accordion.name",
+  "max_blocks": 12,
+  "class": "aliens-custom-section"
+}
+{% endschema %}
