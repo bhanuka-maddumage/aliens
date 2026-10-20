@@ -1,0 +1,155 @@
+{{ 'aliens-interactive.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #Aliens-{{ section.id }} { padding-top: {{ section.settings.padding_top | times: 0.75 }}px; padding-bottom: {{ section.settings.padding_bottom | times: 0.75 }}px; }
+  @media (min-width: 750px) { #Aliens-{{ section.id }} { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; } }
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <section id="Aliens-{{ section.id }}" class="aliens-section page-width" aria-labelledby="AliensHeading-{{ section.id }}">
+    <header class="aliens-interactive-heading">
+      {% if section.settings.eyebrow != blank %}<p class="aliens-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+      <h2 id="AliensHeading-{{ section.id }}" class="aliens-title">{{ section.settings.heading | escape }}</h2>
+      {% if section.settings.text != blank %}<div class="aliens-text rte">{{ section.settings.text }}</div>{% endif %}
+    </header>
+    <div class="aliens-social-grid aliens-social-grid--{{ section.settings.columns }}">
+      {% for block in section.blocks %}
+        {% assign gallery_link = block.settings.link | default: block.settings.product.url %}
+        {% if block.settings.image != blank %}
+          <figure class="aliens-social-tile" {{ block.shopify_attributes }}>
+            {% if gallery_link != blank %}<a href="{{ gallery_link }}"{% if block.settings.caption == blank %} aria-label="{{ block.settings.image.alt | default: block.settings.product.title | default: section.settings.link_label | escape }}"{% endif %}>{% endif %}
+              {{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '300, 500, 750, 1000', sizes: '(min-width: 990px) 25vw, 50vw', class: 'aliens-social-tile__image' }}
+              {% if block.settings.caption != blank %}<span class="aliens-social-tile__caption">{{ block.settings.caption | escape }}</span>{% endif %}
+            {% if gallery_link != blank %}</a>{% endif %}
+          </figure>
+        {% elsif request.design_mode %}<div class="aliens-editor-note aliens-social-tile" {{ block.shopify_attributes }}>Choose approved photography for this gallery tile.</div>{% endif %}
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "presets": [
+    {
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ],
+      "name": "t:aliens.social_gallery.presets_0_name"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "label": "t:aliens.social_gallery.settings_0_label",
+      "id": "eyebrow"
+    },
+    {
+      "default": "SEEN IN YOUR WORLD.",
+      "type": "text",
+      "label": "t:aliens.social_gallery.settings_1_label",
+      "id": "heading"
+    },
+    {
+      "type": "richtext",
+      "label": "t:aliens.social_gallery.settings_2_label",
+      "id": "text"
+    },
+    {
+      "default": "scheme-1",
+      "type": "color_scheme",
+      "label": "t:aliens.social_gallery.settings_3_label",
+      "id": "color_scheme"
+    },
+    {
+      "min": 0,
+      "max": 120,
+      "label": "t:aliens.social_gallery.settings_4_label",
+      "type": "range",
+      "step": 4,
+      "default": 64,
+      "unit": "px",
+      "id": "padding_top"
+    },
+    {
+      "min": 0,
+      "max": 120,
+      "label": "t:aliens.social_gallery.settings_5_label",
+      "type": "range",
+      "step": 4,
+      "default": 64,
+      "unit": "px",
+      "id": "padding_bottom"
+    },
+    {
+      "options": [
+        {
+          "value": "3",
+          "label": "t:aliens.social_gallery.settings_6_options_0_label"
+        },
+        {
+          "value": "4",
+          "label": "t:aliens.social_gallery.settings_6_options_1_label"
+        }
+      ],
+      "default": "4",
+      "type": "select",
+      "label": "t:aliens.social_gallery.settings_6_label",
+      "id": "columns"
+    },
+    {
+      "default": "Explore this image",
+      "type": "text",
+      "label": "t:aliens.social_gallery.settings_7_label",
+      "id": "link_label"
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "tag": "div",
+  "blocks": [
+    {
+      "type": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "t:aliens.social_gallery.blocks_0_settings_0_label",
+          "id": "image"
+        },
+        {
+          "type": "text",
+          "label": "t:aliens.social_gallery.blocks_0_settings_1_label",
+          "id": "caption"
+        },
+        {
+          "type": "product",
+          "label": "t:aliens.social_gallery.blocks_0_settings_2_label",
+          "id": "product"
+        },
+        {
+          "info": "t:aliens.social_gallery.blocks_0_settings_3_info",
+          "type": "url",
+          "label": "t:aliens.social_gallery.blocks_0_settings_3_label",
+          "id": "link"
+        }
+      ],
+      "name": "t:aliens.social_gallery.blocks_0_name"
+    }
+  ],
+  "name": "t:aliens.social_gallery.name",
+  "max_blocks": 12,
+  "class": "aliens-custom-section"
+}
+{% endschema %}
