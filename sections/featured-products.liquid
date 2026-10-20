@@ -1,0 +1,169 @@
+
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{% if section.settings.quick_add == 'standard' %}{{ 'quick-add.css' | asset_url | stylesheet_tag }}<script src="{{ 'quick-add.js' | asset_url }}" defer></script><script src="{{ 'product-form.js' | asset_url }}" defer></script>{% endif %}
+<div class="color-{{ section.settings.color_scheme }} gradient"><div class="aliens-section page-width" style="--section-top: {{ section.settings.padding_top }}px; --section-bottom: {{ section.settings.padding_bottom }}px"><div class="aliens-section-heading" data-aliens-reveal>
+{% if section.settings.eyebrow != blank %}<p class="aliens-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+{% if section.settings.heading != blank %}<h2 class="aliens-title">{{ section.settings.heading | escape }}</h2>{% endif %}
+{% if section.settings.text != blank %}<div class="aliens-text rte">{{ section.settings.text }}</div>{% endif %}</div>
+{% if section.settings.collection != blank %}
+<ul class="aliens-products-grid" role="list" style="--product-columns: {{ section.settings.columns_desktop }}; --product-mobile: {{ section.settings.columns_mobile }};">
+{% for product in section.settings.collection.products limit: section.settings.product_count %}<li data-aliens-reveal>{% render 'card-product', card_product: product, media_aspect_ratio: section.settings.image_ratio, show_secondary_image: section.settings.secondary_image, show_rating: section.settings.show_rating, quick_add: section.settings.quick_add, section_id: section.id %}</li>{% endfor %}</ul>
+<div class="aliens-section-end"><a class="aliens-text-link" href="{{ section.settings.collection.url }}">{{ section.settings.link_label | escape }} <span aria-hidden="true">↗</span></a></div>
+{% elsif request.design_mode %}<div class="aliens-editor-note">Select a collection to display real products, prices and quick-add controls.</div>{% endif %}</div></div>
+{% schema %}
+{
+  "name": "t:aliens.featured_products.name",
+  "tag": "section",
+  "class": "aliens-section-wrapper",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:aliens.featured_products.settings_0_label",
+      "default": "ALIENS / A DIFFERENT PERSPECTIVE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:aliens.featured_products.settings_1_label",
+      "default": "THE EVERYDAY. REIMAGINED."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:aliens.featured_products.settings_2_label"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:aliens.featured_products.settings_3_label"
+    },
+    {
+      "type": "range",
+      "id": "product_count",
+      "label": "t:aliens.featured_products.settings_4_label",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "t:aliens.featured_products.settings_5_label",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "t:aliens.featured_products.settings_6_label",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:aliens.featured_products.settings_6_options_0_label"
+        },
+        {
+          "value": "2",
+          "label": "t:aliens.featured_products.settings_6_options_1_label"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "t:aliens.featured_products.settings_7_label",
+      "options": [
+        {
+          "value": "square",
+          "label": "t:aliens.featured_products.settings_7_options_0_label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:aliens.featured_products.settings_7_options_1_label"
+        },
+        {
+          "value": "adapt",
+          "label": "t:aliens.featured_products.settings_7_options_2_label"
+        }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "checkbox",
+      "id": "secondary_image",
+      "label": "t:aliens.featured_products.settings_8_label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "t:aliens.featured_products.settings_9_label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "quick_add",
+      "label": "t:aliens.featured_products.settings_10_label",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:aliens.featured_products.settings_10_options_0_label"
+        },
+        {
+          "value": "standard",
+          "label": "t:aliens.featured_products.settings_10_options_1_label"
+        }
+      ],
+      "default": "standard"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:aliens.featured_products.settings_11_label",
+      "default": "View the collection"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:aliens.featured_products.settings_12_label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:aliens.featured_products.settings_13_label",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:aliens.featured_products.settings_14_label",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:aliens.featured_products.presets_0_name"
+    }
+  ]
+}
+{% endschema %}
