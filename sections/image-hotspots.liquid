@@ -1,0 +1,151 @@
+{{ 'aliens-interactive.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #Aliens-{{ section.id }} { padding-top: {{ section.settings.padding_top | times: 0.75 }}px; padding-bottom: {{ section.settings.padding_bottom | times: 0.75 }}px; }
+  @media (min-width: 750px) { #Aliens-{{ section.id }} { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; } }
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <section id="Aliens-{{ section.id }}" class="aliens-section page-width" aria-labelledby="AliensHeading-{{ section.id }}">
+    <header class="aliens-interactive-heading">
+      {% if section.settings.eyebrow != blank %}<p class="aliens-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+      <h2 id="AliensHeading-{{ section.id }}" class="aliens-title">{{ section.settings.heading | escape }}</h2>
+      {% if section.settings.text != blank %}<div class="aliens-text rte">{{ section.settings.text }}</div>{% endif %}
+    </header>
+    <div class="aliens-hotspots{% if section.settings.image == blank %} aliens-hotspots--no-image{% endif %}">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', widths: '500, 800, 1200, 1600, 2000', sizes: '(min-width: 1200px) 1100px, 100vw', class: 'aliens-hotspots__image' }}
+      {% elsif request.design_mode %}<div class="aliens-editor-note">Choose an image, then position each hotspot with its horizontal and vertical settings.</div>{% endif %}
+      <div class="aliens-hotspots__items">
+        {% for block in section.blocks %}
+          {% assign hotspot_product = block.settings.product %}
+          {% assign hotspot_title = block.settings.heading | default: hotspot_product.title %}
+          {% if hotspot_title != blank %}
+            <details class="aliens-hotspot{% if block.settings.x > 50 %} aliens-hotspot--right{% endif %}{% if block.settings.y > 50 %} aliens-hotspot--bottom{% endif %}" style="--hotspot-x: {{ block.settings.x }}%; --hotspot-y: {{ block.settings.y }}%;" {{ block.shopify_attributes }}>
+              <summary><span class="aliens-hotspot__dot" aria-hidden="true">{{ forloop.index }}</span><span class="aliens-hotspot__label">{{ hotspot_title | escape }}</span></summary>
+              <div class="aliens-hotspot__panel">
+                <h3>{{ hotspot_title | escape }}</h3>
+                {% if block.settings.text != blank %}<div class="rte">{{ block.settings.text }}</div>{% endif %}
+                {% if hotspot_product != blank %}<a href="{{ hotspot_product.url }}">{{ hotspot_product.title | escape }} — {{ hotspot_product.price | money }}</a>{% endif %}
+              </div>
+            </details>
+          {% elsif request.design_mode %}<p class="aliens-editor-note" {{ block.shopify_attributes }}>Add a hotspot heading or select a product.</p>{% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "presets": [
+    {
+      "blocks": [
+        {
+          "type": "hotspot"
+        }
+      ],
+      "name": "t:aliens.image_hotspots.presets_0_name"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "label": "t:aliens.image_hotspots.settings_0_label",
+      "id": "eyebrow"
+    },
+    {
+      "default": "A CLOSER LOOK.",
+      "type": "text",
+      "label": "t:aliens.image_hotspots.settings_1_label",
+      "id": "heading"
+    },
+    {
+      "type": "richtext",
+      "label": "t:aliens.image_hotspots.settings_2_label",
+      "id": "text"
+    },
+    {
+      "default": "scheme-1",
+      "type": "color_scheme",
+      "label": "t:aliens.image_hotspots.settings_3_label",
+      "id": "color_scheme"
+    },
+    {
+      "min": 0,
+      "max": 120,
+      "label": "t:aliens.image_hotspots.settings_4_label",
+      "type": "range",
+      "step": 4,
+      "default": 64,
+      "unit": "px",
+      "id": "padding_top"
+    },
+    {
+      "min": 0,
+      "max": 120,
+      "label": "t:aliens.image_hotspots.settings_5_label",
+      "type": "range",
+      "step": 4,
+      "default": 64,
+      "unit": "px",
+      "id": "padding_bottom"
+    },
+    {
+      "type": "image_picker",
+      "label": "t:aliens.image_hotspots.settings_6_label",
+      "id": "image"
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "tag": "div",
+  "blocks": [
+    {
+      "type": "hotspot",
+      "settings": [
+        {
+          "type": "text",
+          "label": "t:aliens.image_hotspots.blocks_0_settings_0_label",
+          "id": "heading"
+        },
+        {
+          "type": "richtext",
+          "label": "t:aliens.image_hotspots.blocks_0_settings_1_label",
+          "id": "text"
+        },
+        {
+          "type": "product",
+          "label": "t:aliens.image_hotspots.blocks_0_settings_2_label",
+          "id": "product"
+        },
+        {
+          "min": 5,
+          "max": 95,
+          "label": "t:aliens.image_hotspots.blocks_0_settings_3_label",
+          "type": "range",
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "id": "x"
+        },
+        {
+          "min": 5,
+          "max": 95,
+          "label": "t:aliens.image_hotspots.blocks_0_settings_4_label",
+          "type": "range",
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "id": "y"
+        }
+      ],
+      "name": "t:aliens.image_hotspots.blocks_0_name"
+    }
+  ],
+  "name": "t:aliens.image_hotspots.name",
+  "max_blocks": 8,
+  "class": "aliens-custom-section"
+}
+{% endschema %}
