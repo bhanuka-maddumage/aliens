@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "manifesto": {
+      "type": "brand-manifesto",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "text": "<p>Headwear from another perspective. For the individual. For the everyday.</p>"
+      }
+    },
+    "story": {
+      "type": "product-story",
+      "settings": {
+        "heading": "YOUR STORY STARTS WITH YOU."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "manifesto",
+    "story"
+  ]
+}

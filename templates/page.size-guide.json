@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "guide": {
+      "type": "faq-accordion",
+      "settings": {
+        "heading": "SIZE & FIT",
+        "eyebrow": "FIND YOUR FIT"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "guide"
+  ]
+}
