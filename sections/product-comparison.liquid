@@ -1,0 +1,171 @@
+{{ 'aliens-interactive.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #Aliens-{{ section.id }} { padding-top: {{ section.settings.padding_top | times: 0.75 }}px; padding-bottom: {{ section.settings.padding_bottom | times: 0.75 }}px; }
+  @media (min-width: 750px) { #Aliens-{{ section.id }} { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; } }
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <section id="Aliens-{{ section.id }}" class="aliens-section page-width" aria-labelledby="AliensHeading-{{ section.id }}">
+    <header class="aliens-interactive-heading">
+      {% if section.settings.eyebrow != blank %}<p class="aliens-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+      <h2 id="AliensHeading-{{ section.id }}" class="aliens-title">{{ section.settings.heading | escape }}</h2>
+      {% if section.settings.text != blank %}<div class="aliens-text rte">{{ section.settings.text }}</div>{% endif %}
+    </header>
+    {% assign comparison_count = 0 %}
+    {% for block in section.blocks %}{% if block.settings.product != blank %}{% assign comparison_count = comparison_count | plus: 1 %}{% endif %}{% endfor %}
+    {% if comparison_count > 0 %}
+      <div class="aliens-comparison-scroll" role="region" aria-labelledby="AliensHeading-{{ section.id }}" tabindex="0">
+        <table class="aliens-comparison">
+          <caption class="visually-hidden">{{ section.settings.heading | escape }}</caption>
+          <thead><tr><th scope="col">{{ section.settings.product_label | escape }}</th>
+            {% for block in section.blocks %}{% assign item = block.settings.product %}{% if item != blank %}
+              <th scope="col" {{ block.shopify_attributes }}><a href="{{ item.url }}">
+                {% if item.featured_image != blank %}{{ item.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '240, 400, 600', sizes: '240px' }}{% endif %}
+                {{ item.title | escape }}
+              </a></th>
+            {% endif %}{% endfor %}
+          </tr></thead>
+          <tbody>
+            <tr><th scope="row">{{ section.settings.price_label | escape }}</th>{% for block in section.blocks %}{% if block.settings.product != blank %}<td>{{ block.settings.product.price | money }}</td>{% endif %}{% endfor %}</tr>
+            <tr><th scope="row">{{ section.settings.material_label | escape }}</th>{% for block in section.blocks %}{% if block.settings.product != blank %}<td>{{ block.settings.material | default: block.settings.product.metafields.custom.material.value | default: '—' | escape }}</td>{% endif %}{% endfor %}</tr>
+            <tr><th scope="row">{{ section.settings.fit_label | escape }}</th>{% for block in section.blocks %}{% if block.settings.product != blank %}<td>{{ block.settings.fit | default: block.settings.product.metafields.custom.fit.value | default: '—' | escape }}</td>{% endif %}{% endfor %}</tr>
+            <tr><th scope="row">{{ section.settings.details_label | escape }}</th>{% for block in section.blocks %}{% if block.settings.product != blank %}<td>{% if block.settings.details != blank %}{{ block.settings.details }}{% else %}—{% endif %}</td>{% endif %}{% endfor %}</tr>
+          </tbody>
+        </table>
+      </div>
+    {% elsif request.design_mode %}<p class="aliens-editor-note">Select products in the comparison blocks. Only real product data and information you supply will appear.</p>{% endif %}
+  </section>
+</div>
+{% schema %}
+{
+  "presets": [
+    {
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ],
+      "name": "t:aliens.product_comparison.presets_0_name"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "label": "t:aliens.product_comparison.settings_0_label",
+      "id": "eyebrow"
+    },
+    {
+      "default": "THE DETAILS MATTER.",
+      "type": "text",
+      "label": "t:aliens.product_comparison.settings_1_label",
+      "id": "heading"
+    },
+    {
+      "type": "richtext",
+      "label": "t:aliens.product_comparison.settings_2_label",
+      "id": "text"
+    },
+    {
+      "default": "scheme-1",
+      "type": "color_scheme",
+      "label": "t:aliens.product_comparison.settings_3_label",
+      "id": "color_scheme"
+    },
+    {
+      "min": 0,
+      "max": 120,
+      "label": "t:aliens.product_comparison.settings_4_label",
+      "type": "range",
+      "step": 4,
+      "default": 64,
+      "unit": "px",
+      "id": "padding_top"
+    },
+    {
+      "min": 0,
+      "max": 120,
+      "label": "t:aliens.product_comparison.settings_5_label",
+      "type": "range",
+      "step": 4,
+      "default": 64,
+      "unit": "px",
+      "id": "padding_bottom"
+    },
+    {
+      "default": "Product",
+      "type": "text",
+      "label": "t:aliens.product_comparison.settings_6_label",
+      "id": "product_label"
+    },
+    {
+      "default": "Price",
+      "type": "text",
+      "label": "t:aliens.product_comparison.settings_7_label",
+      "id": "price_label"
+    },
+    {
+      "default": "Material",
+      "type": "text",
+      "label": "t:aliens.product_comparison.settings_8_label",
+      "id": "material_label"
+    },
+    {
+      "default": "Fit",
+      "type": "text",
+      "label": "t:aliens.product_comparison.settings_9_label",
+      "id": "fit_label"
+    },
+    {
+      "default": "Details",
+      "type": "text",
+      "label": "t:aliens.product_comparison.settings_10_label",
+      "id": "details_label"
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "tag": "div",
+  "blocks": [
+    {
+      "type": "product",
+      "settings": [
+        {
+          "type": "product",
+          "label": "t:aliens.product_comparison.blocks_0_settings_0_label",
+          "id": "product"
+        },
+        {
+          "info": "t:aliens.product_comparison.blocks_0_settings_1_info",
+          "type": "text",
+          "label": "t:aliens.product_comparison.blocks_0_settings_1_label",
+          "id": "material"
+        },
+        {
+          "info": "t:aliens.product_comparison.blocks_0_settings_2_info",
+          "type": "text",
+          "label": "t:aliens.product_comparison.blocks_0_settings_2_label",
+          "id": "fit"
+        },
+        {
+          "type": "richtext",
+          "label": "t:aliens.product_comparison.blocks_0_settings_3_label",
+          "id": "details"
+        }
+      ],
+      "name": "t:aliens.product_comparison.blocks_0_name"
+    }
+  ],
+  "name": "t:aliens.product_comparison.name",
+  "max_blocks": 4,
+  "class": "aliens-custom-section"
+}
+{% endschema %}
