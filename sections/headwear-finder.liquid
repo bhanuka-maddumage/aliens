@@ -1,0 +1,142 @@
+{{ 'aliens-interactive.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  #Aliens-{{ section.id }} { padding-top: {{ section.settings.padding_top | times: 0.75 }}px; padding-bottom: {{ section.settings.padding_bottom | times: 0.75 }}px; }
+  @media (min-width: 750px) { #Aliens-{{ section.id }} { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; } }
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <section id="Aliens-{{ section.id }}" class="aliens-section page-width" aria-labelledby="AliensHeading-{{ section.id }}">
+    <header class="aliens-interactive-heading">
+      {% if section.settings.eyebrow != blank %}<p class="aliens-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+      <h2 id="AliensHeading-{{ section.id }}" class="aliens-title">{{ section.settings.heading | escape }}</h2>
+      {% if section.settings.text != blank %}<div class="aliens-text rte">{{ section.settings.text }}</div>{% endif %}
+    </header>
+    <div class="aliens-finder">
+      {% for block in section.blocks %}
+        {% assign selected_collection = block.settings.collection %}
+        {% if selected_collection != blank %}
+          <details class="aliens-accordion__item aliens-finder__item" {{ block.shopify_attributes }}>
+            <summary><span class="aliens-finder__number" aria-hidden="true">{{ forloop.index | prepend: '0' }}</span>{{ block.settings.heading | default: selected_collection.title | escape }}<span aria-hidden="true">+</span></summary>
+            <div class="aliens-finder__content">
+              {% assign finder_image = block.settings.image | default: selected_collection.image | default: selected_collection.products.first.featured_image %}
+              {% if finder_image != blank %}{{ finder_image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 750px) 35vw, 90vw', class: 'aliens-finder__image' }}{% endif %}
+              <div>
+                {% if block.settings.description != blank %}<div class="rte aliens-text">{{ block.settings.description }}</div>{% endif %}
+                <a class="aliens-button" href="{{ selected_collection.url }}">{{ block.settings.button_label | escape }}<span class="visually-hidden">: {{ selected_collection.title | escape }}</span></a>
+              </div>
+            </div>
+          </details>
+        {% elsif request.design_mode %}
+          <div class="aliens-editor-note" {{ block.shopify_attributes }}>Choose a collection for this discovery option.</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "presets": [
+    {
+      "blocks": [
+        {
+          "type": "option"
+        },
+        {
+          "type": "option"
+        },
+        {
+          "type": "option"
+        }
+      ],
+      "name": "t:aliens.headwear_finder.presets_0_name"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "label": "t:aliens.headwear_finder.settings_0_label",
+      "id": "eyebrow"
+    },
+    {
+      "default": "FIND YOUR FIT.",
+      "type": "text",
+      "label": "t:aliens.headwear_finder.settings_1_label",
+      "id": "heading"
+    },
+    {
+      "type": "richtext",
+      "label": "t:aliens.headwear_finder.settings_2_label",
+      "id": "text"
+    },
+    {
+      "default": "scheme-1",
+      "type": "color_scheme",
+      "label": "t:aliens.headwear_finder.settings_3_label",
+      "id": "color_scheme"
+    },
+    {
+      "min": 0,
+      "max": 120,
+      "label": "t:aliens.headwear_finder.settings_4_label",
+      "type": "range",
+      "step": 4,
+      "default": 64,
+      "unit": "px",
+      "id": "padding_top"
+    },
+    {
+      "min": 0,
+      "max": 120,
+      "label": "t:aliens.headwear_finder.settings_5_label",
+      "type": "range",
+      "step": 4,
+      "default": 64,
+      "unit": "px",
+      "id": "padding_bottom"
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "tag": "div",
+  "blocks": [
+    {
+      "type": "option",
+      "settings": [
+        {
+          "type": "collection",
+          "label": "t:aliens.headwear_finder.blocks_0_settings_0_label",
+          "id": "collection"
+        },
+        {
+          "type": "text",
+          "label": "t:aliens.headwear_finder.blocks_0_settings_1_label",
+          "id": "heading"
+        },
+        {
+          "type": "richtext",
+          "label": "t:aliens.headwear_finder.blocks_0_settings_2_label",
+          "id": "description"
+        },
+        {
+          "type": "image_picker",
+          "label": "t:aliens.headwear_finder.blocks_0_settings_3_label",
+          "id": "image"
+        },
+        {
+          "default": "Explore collection",
+          "type": "text",
+          "label": "t:aliens.headwear_finder.blocks_0_settings_4_label",
+          "id": "button_label"
+        }
+      ],
+      "name": "t:aliens.headwear_finder.blocks_0_name"
+    }
+  ],
+  "name": "t:aliens.headwear_finder.name",
+  "max_blocks": 12,
+  "class": "aliens-custom-section"
+}
+{% endschema %}
