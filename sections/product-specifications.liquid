@@ -1,0 +1,125 @@
+{{ 'aliens-products.css' | asset_url | stylesheet_tag }}
+{% liquid
+  assign spec_product = section.settings.product | default: product
+  assign keys = 'material,fit,dimensions,weight,care_instructions,certification,technical_specifications' | split: ','
+  assign labels = 'Material,Fit,Dimensions,Weight,Care instructions,Certification,Technical specifications' | split: ','
+  assign has_specs = false
+  for key in keys
+    if spec_product.metafields.custom[key] != blank
+      assign has_specs = true
+    endif
+  endfor
+  for block in section.blocks
+    if block.settings.label != blank and block.settings.value != blank
+      assign has_specs = true
+    endif
+  endfor
+%}
+{% if has_specs or request.design_mode %}
+  <div class="color-{{ section.settings.color_scheme }} gradient">
+    <div class="page-width aliens-product-section" style="--aliens-product-padding: {{ section.settings.padding }}px">
+      <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+      {% if has_specs %}
+        <dl class="aliens-specifications">
+          {% for key in keys %}
+            {% assign field = spec_product.metafields.custom[key] %}
+            {% if field != blank %}
+              <div class="aliens-specifications__row"><dt>{{ labels[forloop.index0] }}</dt><dd>{{ field | metafield_tag }}</dd></div>
+            {% endif %}
+          {% endfor %}
+          {% for block in section.blocks %}
+            {% if block.settings.label != blank and block.settings.value != blank %}
+              <div class="aliens-specifications__row" {{ block.shopify_attributes }}><dt>{{ block.settings.label | escape }}</dt><dd class="rte">{{ block.settings.value }}</dd></div>
+            {% endif %}
+          {% endfor %}
+        </dl>
+      {% else %}
+        <p class="aliens-product-empty">Add product metafields or specification blocks. Empty specifications are hidden from shoppers.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+{% schema %}
+{
+  "name": "t:aliens.product_specifications.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:aliens.product_specifications.settings_0_label",
+      "info": "t:aliens.product_specifications.settings_0_info"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "t:aliens.product_specifications.settings_1_label",
+      "default": "THE FINER DETAILS."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:aliens.product_specifications.settings_2_label",
+      "default": "h1",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:aliens.product_specifications.settings_2_options_0_label"
+        },
+        {
+          "value": "h1",
+          "label": "t:aliens.product_specifications.settings_2_options_1_label"
+        },
+        {
+          "value": "h0",
+          "label": "t:aliens.product_specifications.settings_2_options_2_label"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "t:aliens.product_specifications.settings_3_content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:aliens.product_specifications.settings_4_label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "t:aliens.product_specifications.settings_5_label",
+      "min": 0,
+      "max": 120,
+      "step": 8,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "specification",
+      "name": "t:aliens.product_specifications.blocks_0_name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:aliens.product_specifications.blocks_0_settings_0_label"
+        },
+        {
+          "type": "richtext",
+          "id": "value",
+          "label": "t:aliens.product_specifications.blocks_0_settings_1_label"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 16,
+  "presets": [
+    {
+      "name": "t:aliens.product_specifications.presets_0_name"
+    }
+  ]
+}
+{% endschema %}
