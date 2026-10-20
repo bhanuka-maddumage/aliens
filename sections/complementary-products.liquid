@@ -1,0 +1,137 @@
+{{ 'aliens-products.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'aliens-products.js' | asset_url }}" defer="defer"></script>
+{% assign complementary_product = section.settings.product | default: product %}
+<aliens-complementary
+  class="color-{{ section.settings.color_scheme }} gradient"
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&amp;product_id={{ complementary_product.id }}&amp;limit={{ section.settings.limit }}&amp;intent=complementary"
+  data-enabled="{% if complementary_product != blank %}true{% else %}false{% endif %}"
+>
+  {% if recommendations.performed and recommendations.products_count > 0 %}
+    <div class="page-width aliens-product-section" style="--aliens-product-padding: {{ section.settings.padding }}px" data-complementary-content>
+      <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+      <ul class="grid product-grid grid--{{ section.settings.columns }}-col-desktop grid--2-col-tablet-down" role="list">
+        {% for recommendation in recommendations.products %}
+          <li class="grid__item">
+            {% render 'card-product', card_product: recommendation, media_aspect_ratio: section.settings.image_ratio, show_secondary_image: section.settings.secondary_image, section_id: section.id %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% elsif request.design_mode %}
+    <div class="page-width aliens-product-section" style="--aliens-product-padding: {{ section.settings.padding }}px">
+      <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+      <p class="aliens-product-empty">Choose complementary products in Shopify Search &amp; Discovery for this product. This section is hidden from shoppers when no recommendations are available.</p>
+    </div>
+  {% endif %}
+</aliens-complementary>
+{% schema %}
+{
+  "name": "t:aliens.complementary_products.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:aliens.complementary_products.settings_0_label",
+      "info": "t:aliens.complementary_products.settings_0_info"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "t:aliens.complementary_products.settings_1_label",
+      "default": "COMPLETE YOUR ORBIT."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:aliens.complementary_products.settings_2_label",
+      "default": "h1",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:aliens.complementary_products.settings_2_options_0_label"
+        },
+        {
+          "value": "h1",
+          "label": "t:aliens.complementary_products.settings_2_options_1_label"
+        },
+        {
+          "value": "h0",
+          "label": "t:aliens.complementary_products.settings_2_options_2_label"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": "t:aliens.complementary_products.settings_3_content"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "t:aliens.complementary_products.settings_4_label",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "t:aliens.complementary_products.settings_5_label",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "t:aliens.complementary_products.settings_6_label",
+      "default": "square",
+      "options": [
+        {
+          "value": "square",
+          "label": "t:aliens.complementary_products.settings_6_options_0_label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:aliens.complementary_products.settings_6_options_1_label"
+        },
+        {
+          "value": "adapt",
+          "label": "t:aliens.complementary_products.settings_6_options_2_label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "secondary_image",
+      "label": "t:aliens.complementary_products.settings_7_label",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:aliens.complementary_products.settings_8_label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "t:aliens.complementary_products.settings_9_label",
+      "min": 0,
+      "max": 120,
+      "step": 8,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:aliens.complementary_products.presets_0_name"
+    }
+  ]
+}
+{% endschema %}
