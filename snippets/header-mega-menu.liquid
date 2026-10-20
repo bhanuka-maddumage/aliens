@@ -31,7 +31,7 @@
                 tabindex="-1"
               >
                 <ul
-                  class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
+                  class="mega-menu__list page-width{% if link.levels == 1 and section.settings.mega_featured_collection == blank %} mega-menu__list--condensed{% endif %}"
                   role="list"
                 >
                   {%- for childlink in link.links -%}
@@ -66,6 +66,18 @@
                       {%- endif -%}
                     </li>
                   {%- endfor -%}
+                  {%- if section.settings.mega_featured_collection != blank -%}
+                    {%- assign featured_collection = section.settings.mega_featured_collection -%}
+                    {%- assign featured_image = featured_collection.image | default: featured_collection.products.first.featured_image -%}
+                    <li class="aliens-mega-feature">
+                      <a class="mega-menu__link mega-menu__link--level-2 link" href="{{ featured_collection.url }}">
+                        {%- if featured_image != blank -%}
+                          {{ featured_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '200, 400, 600', sizes: '250px' }}
+                        {%- endif -%}
+                        {{ featured_collection.title | escape }}
+                      </a>
+                    </li>
+                  {%- endif -%}
                 </ul>
               </div>
             </details>
