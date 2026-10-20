@@ -70,6 +70,7 @@
 
   {%- if picker_type == 'swatch' -%}
     {% liquid
+      assign escaped_value = value | escape
       assign checked = false
       if option.selected_value == value
         assign checked = true
@@ -83,7 +84,7 @@
       render 'swatch-input',
       id: input_id,
       name: option.name,
-      value: value | escape,
+      value: escaped_value,
       swatch: value.swatch,
       product_form_id: product_form_id,
       checked: checked,
