@@ -1,0 +1,17 @@
+
+<div class="aliens-category-grid aliens-category-grid--{{ section.settings.layout }}">
+{% for block in section.blocks %}
+{% liquid
+  assign tile_collection = block.settings.collection
+  assign tile_image = block.settings.image | default: tile_collection.featured_image
+  assign tile_title = block.settings.title | default: tile_collection.title
+  assign tile_link = block.settings.link | default: tile_collection.url
+%}
+<article class="aliens-category" data-aliens-reveal {{ block.shopify_attributes }}>
+{% if tile_link != blank %}<a href="{{ tile_link }}" class="aliens-category__link">{% endif %}
+<div class="aliens-category__image">{% if tile_image != blank %}{{ tile_image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '350,550,750,1000', sizes: '(min-width: 990px) 33vw, 50vw' }}{% else %}<div class="aliens-category__empty" aria-hidden="true"><span>{{ forloop.index | prepend: '0' }}</span><span>{{ tile_title | escape }}</span></div>{% endif %}</div>
+<div class="aliens-category__caption"><div>{% if block.settings.label != blank %}<p class="aliens-eyebrow">{{ block.settings.label | escape }}</p>{% endif %}<h3>{{ tile_title | escape }}</h3>{% if block.settings.description != blank %}<p>{{ block.settings.description | escape }}</p>{% endif %}</div>{% if tile_link != blank %}<span class="aliens-arrow" aria-hidden="true">↗</span>{% endif %}</div>
+{% if tile_link != blank %}</a>{% endif %}
+{% if request.design_mode and tile_link == blank %}<p class="aliens-editor-note">Choose a collection or link to make this tile shoppable.</p>{% endif %}
+</article>
+{% endfor %}</div>

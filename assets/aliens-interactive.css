@@ -1,0 +1,60 @@
+.aliens-interactive-heading { margin-bottom: clamp(2.4rem, 5vw, 5.6rem); max-width: 82rem; }
+.aliens-editor-note { padding: 2.4rem; border: 1px dashed currentColor; opacity: .65; }
+.aliens-accordion__item { border-top: 1px solid rgba(var(--color-foreground), .22); }
+.aliens-accordion__item:last-child { border-bottom: 1px solid rgba(var(--color-foreground), .22); }
+.aliens-accordion__item summary { display: flex; gap: 2rem; align-items: center; padding: 2.4rem 0; cursor: pointer; font-size: clamp(1.8rem, 2.4vw, 2.8rem); line-height: 1.3; list-style: none; }
+.aliens-accordion__item summary::-webkit-details-marker, .aliens-hotspot summary::-webkit-details-marker { display: none; }
+.aliens-accordion__item summary > span:last-child { margin-left: auto; }
+.aliens-accordion__item[open] summary > span:last-child { transform: rotate(45deg); }
+.aliens-accordion__answer { max-width: 80rem; padding: 0 0 2.4rem; }
+.aliens-finder__number { font-size: 1.3rem; opacity: .6; font-variant-numeric: tabular-nums; }
+.aliens-finder__content { display: grid; gap: 2.4rem; padding-bottom: 3.2rem; align-items: center; }
+.aliens-finder__image { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
+.aliens-finder__content .aliens-button { margin-top: 2rem; }
+.aliens-comparison-scroll { max-width: 100%; overflow-x: auto; }
+.aliens-comparison { width: 100%; border-collapse: collapse; text-align: left; table-layout: auto; }
+.aliens-comparison th, .aliens-comparison td { border-bottom: 1px solid rgba(var(--color-foreground), .2); padding: 2rem; min-width: 20rem; vertical-align: top; }
+.aliens-comparison th:first-child { min-width: 12rem; font-size: 1.2rem; letter-spacing: .08em; text-transform: uppercase; }
+.aliens-comparison thead th { font-size: 1.8rem; }
+.aliens-comparison img { display: block; width: 100%; max-width: 24rem; height: auto; aspect-ratio: 1; object-fit: contain; margin-bottom: 2rem; background: rgba(var(--color-foreground), .04); }
+.aliens-comparison a, .aliens-hotspot a, .aliens-review-card a { color: inherit; text-underline-offset: .4rem; }
+.aliens-hotspots { position: relative; }
+.aliens-hotspots__image { display: block; width: 100%; height: auto; }
+.aliens-hotspot { border-bottom: 1px solid rgba(var(--color-foreground), .2); }
+.aliens-hotspot summary { display: flex; align-items: center; gap: 1rem; cursor: pointer; list-style: none; padding: 1.5rem 0; }
+.aliens-hotspot__dot { display: grid; place-items: center; flex: 0 0 4.4rem; width: 4.4rem; height: 4.4rem; background: var(--aliens-accent, #c6f566); color: #111; border: 1px solid #111; border-radius: 50%; font-size: 1.4rem; font-weight: 700; }
+.aliens-hotspot__panel { padding: 1.5rem; background: rgb(var(--color-background)); color: rgb(var(--color-foreground)); }
+.aliens-hotspot__panel h3 { margin-top: 0; font-size: 1.8rem; }
+aliens-carousel { display: block; }
+.aliens-carousel-track { display: grid; grid-auto-flow: column; grid-auto-columns: min(86%, 42rem); gap: 2rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 0 2rem; }
+.aliens-review-card { padding: clamp(2.4rem, 4vw, 4rem); border: 1px solid rgba(var(--color-foreground), .2); scroll-snap-align: start; }
+.aliens-review-card blockquote { margin: 1.6rem 0 2.4rem; border: 0; padding: 0; font-style: normal; font-size: clamp(1.8rem, 2vw, 2.4rem); }
+.aliens-review-rating { letter-spacing: .2em; margin: 0; }
+.aliens-review-author { font-weight: 700; }
+.aliens-carousel-controls { display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.6rem; }
+.aliens-carousel-controls[hidden] { display: none; }
+.aliens-carousel-controls button { background: transparent; color: inherit; border: 1px solid currentColor; min-height: 4.4rem; min-width: 4.4rem; padding: 1rem 2rem; cursor: pointer; font: inherit; }
+.aliens-carousel-controls button:disabled { opacity: .3; cursor: default; }
+.aliens-social-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
+.aliens-social-tile { margin: 0; min-width: 0; position: relative; }
+.aliens-social-tile a { display: block; color: inherit; text-decoration: none; }
+.aliens-social-tile__image { display: block; width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover; }
+.aliens-social-tile__caption { display: block; margin-top: 1.2rem; font-size: 1.4rem; line-height: 1.5; }
+.aliens-section :is(summary, button, a, [tabindex="0"]):focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+@media (min-width: 750px) {
+  .aliens-finder__content { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 5rem; }
+  .aliens-finder__content > div:only-child { grid-column: 1 / -1; }
+  .aliens-social-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .aliens-social-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .aliens-hotspots:not(.aliens-hotspots--no-image) .aliens-hotspot { position: absolute; left: var(--hotspot-x); top: var(--hotspot-y); border: 0; transform: translate(-50%, -50%); }
+  .aliens-hotspots:not(.aliens-hotspots--no-image) .aliens-hotspot[open] { z-index: 2; }
+  .aliens-hotspots:not(.aliens-hotspots--no-image) .aliens-hotspot summary { padding: 0; }
+  .aliens-hotspots:not(.aliens-hotspots--no-image) .aliens-hotspot__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .aliens-hotspots:not(.aliens-hotspots--no-image) .aliens-hotspot__panel { position: absolute; top: calc(100% + .8rem); left: 0; width: 25rem; box-shadow: 0 .8rem 3rem #0002; }
+  .aliens-hotspots:not(.aliens-hotspots--no-image) .aliens-hotspot--right .aliens-hotspot__panel { left: auto; right: 0; }
+  .aliens-hotspots:not(.aliens-hotspots--no-image) .aliens-hotspot--bottom .aliens-hotspot__panel { top: auto; bottom: calc(100% + .8rem); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .aliens-carousel-track { scroll-behavior: smooth; }
+  .aliens-accordion__item summary > span:last-child { transition: transform .2s ease; }
+}

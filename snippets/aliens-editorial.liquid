@@ -1,0 +1,11 @@
+
+{% liquid
+  assign editorial_product = section.settings.product
+  assign editorial_collection = section.settings.collection
+  assign editorial_image = section.settings.image | default: editorial_product.featured_image | default: editorial_collection.featured_image
+  assign editorial_link = section.settings.link | default: editorial_product.url | default: editorial_collection.url
+%}
+<div class="aliens-editorial aliens-editorial--{{ section.settings.image_position }} {% if section.settings.large_type %}aliens-editorial--statement{% endif %}" data-aliens-reveal>
+<div class="aliens-editorial__media">{% if section.settings.video != blank %}{{ section.settings.video | video_tag: image_size: '1400x', controls: true, autoplay: false, loop: false }}{% elsif editorial_image != blank %}{{ editorial_image | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '400,750,1100,1600', sizes: '(min-width: 750px) 50vw, 100vw' }}{% else %}<div class="aliens-editorial__graphic" aria-hidden="true"><span>↗</span><span>ALIENS</span></div>{% endif %}</div>
+<div class="aliens-editorial__content"><p class="aliens-eyebrow">{{ section.settings.eyebrow | escape }}</p><h2 class="aliens-title">{{ section.settings.heading | escape }}</h2><div class="aliens-text rte">{{ section.settings.text }}</div>{% if editorial_link != blank and section.settings.label != blank %}<a class="aliens-button" href="{{ editorial_link }}">{{ section.settings.label | escape }} <span aria-hidden="true">↗</span></a>{% endif %}</div>
+</div>

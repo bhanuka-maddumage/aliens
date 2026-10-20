@@ -252,6 +252,20 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'aliens.css' | asset_url | stylesheet_tag }}
+    {% style %}
+      :root {
+        --aliens-accent: {{ settings.aliens_accent | default: '#C6F566' }};
+        --aliens-ink: {{ settings.aliens_ink | default: '#111111' }};
+        --aliens-paper: {{ settings.aliens_paper | default: '#F4F4F2' }};
+        --aliens-muted: {{ settings.aliens_muted | default: '#626262' }};
+        --aliens-display-scale: {{ settings.aliens_display_scale | default: 100 | divided_by: 100.0 }};
+        --aliens-mobile-logo-width: {{ settings.aliens_mobile_logo_width | default: 100 }}px;
+        --aliens-grid-gap: {{ settings.aliens_grid_gap | default: 20 }}px;
+        --aliens-motion-duration: {{ settings.aliens_motion_duration | default: 550 }}ms;
+      }
+    {% endstyle %}
+    <script src="{{ 'aliens.js' | asset_url }}" defer="defer"></script>
 
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
@@ -285,7 +299,7 @@
     </script>
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient aliens-theme{% if settings.aliens_motion %} aliens-motion{% endif %}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -297,6 +311,10 @@
     {% sections 'header-group' %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {% unless request.page_type == 'index' %}
+        {{ 'aliens-products.css' | asset_url | stylesheet_tag }}
+        <div class="page-width">{% render 'aliens-breadcrumb' %}</div>
+      {% endunless %}
       {{ content_for_layout }}
     </main>
 

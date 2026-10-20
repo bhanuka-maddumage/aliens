@@ -1,0 +1,39 @@
+.aliens-product-section { padding-block: var(--aliens-product-padding, 64px); }
+.aliens-product-section h2 { margin: 0 0 2.4rem; }
+.aliens-technical { display: grid; gap: 3.2rem; align-items: center; }
+.aliens-technical__media { overflow: hidden; background: rgba(var(--color-foreground), .04); }
+.aliens-technical__media img, .aliens-technical__media svg { display: block; width: 100%; height: auto; }
+.aliens-technical__media img { aspect-ratio: 1; object-fit: cover; }
+.aliens-technical__eyebrow { font-size: 1.2rem; text-transform: uppercase; letter-spacing: .16em; }
+.aliens-technical__features { margin-block: 2.4rem; }
+.aliens-technical__features details { border-top: 1px solid rgba(var(--color-foreground), .2); padding-block: 1.6rem; }
+.aliens-technical__features details:last-child { border-bottom: 1px solid rgba(var(--color-foreground), .2); }
+.aliens-technical__features summary { cursor: pointer; display: list-item; padding-right: 1rem; font-weight: 600; }
+.aliens-technical__features .rte { margin-top: 1rem; }
+.aliens-specifications { margin: 0; }
+.aliens-specifications__row { display: grid; gap: .8rem; padding-block: 1.8rem; border-top: 1px solid rgba(var(--color-foreground), .2); }
+.aliens-specifications__row dt { font-weight: 600; }
+.aliens-specifications__row dd { margin: 0; overflow-wrap: anywhere; }
+.aliens-specifications__row p { margin-top: 0; }
+.aliens-product-empty { border: 1px dashed rgba(var(--color-foreground), .3); padding: 2.4rem; }
+aliens-recently-viewed, aliens-complementary { display: block; }
+aliens-recently-viewed[hidden], aliens-complementary[hidden] { display: none; }
+.aliens-recent-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.4rem 1.6rem; }
+.aliens-recent-card { color: inherit; text-decoration: none; display: block; }
+.aliens-recent-card img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; background: rgba(var(--color-foreground), .04); }
+.aliens-recent-card h3 { margin-block: 1.4rem .6rem; font-size: 1.6rem; }
+.aliens-recent-card:hover h3 { text-decoration: underline; text-underline-offset: .3rem; }
+.aliens-recent-card p { margin: 0; }
+.aliens-breadcrumb { padding-block: 1.6rem; font-size: 1.2rem; }
+.aliens-breadcrumb ol { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .8rem; }
+.aliens-breadcrumb li + li::before { content: "/"; margin-right: .8rem; opacity: .5; }
+.aliens-breadcrumb a { color: inherit; text-underline-offset: .3rem; }
+@media screen and (min-width: 750px) {
+  .aliens-technical { grid-template-columns: 1.1fr 1fr; gap: 6rem; }
+  .aliens-technical--image-right .aliens-technical__media { order: 2; }
+  .aliens-specifications__row { grid-template-columns: minmax(16rem, 1fr) 2fr; gap: 3rem; }
+  .aliens-recent-grid { grid-template-columns: repeat(var(--aliens-recent-columns, 4), minmax(0, 1fr)); }
+}
+@media screen and (max-width: 749px) {
+  .aliens-product-section { padding-block: calc(var(--aliens-product-padding, 64px) * .65); }
+}

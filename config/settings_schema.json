@@ -1465,5 +1465,92 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "t:aliens.design.name",
+    "settings": [
+      {
+        "type": "text",
+        "id": "aliens_wordmark",
+        "label": "t:aliens.design.settings_0_label",
+        "default": "ALIENS"
+      },
+      {
+        "type": "color",
+        "id": "aliens_accent",
+        "label": "t:aliens.design.settings_1_label",
+        "default": "#C6F566"
+      },
+      {
+        "type": "color",
+        "id": "aliens_ink",
+        "label": "t:aliens.design.settings_2_label",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "aliens_paper",
+        "label": "t:aliens.design.settings_3_label",
+        "default": "#F4F4F2"
+      },
+      {
+        "type": "color",
+        "id": "aliens_muted",
+        "label": "t:aliens.design.settings_4_label",
+        "default": "#626262"
+      },
+      {
+        "type": "range",
+        "id": "aliens_display_scale",
+        "label": "t:aliens.design.settings_5_label",
+        "min": 80,
+        "max": 120,
+        "step": 5,
+        "default": 100,
+        "unit": "%"
+      },
+      {
+        "type": "range",
+        "id": "aliens_mobile_logo_width",
+        "label": "t:aliens.design.settings_6_label",
+        "min": 60,
+        "max": 200,
+        "step": 10,
+        "default": 100,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "aliens_grid_gap",
+        "label": "t:aliens.design.settings_7_label",
+        "min": 8,
+        "max": 40,
+        "step": 4,
+        "default": 20,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "aliens_motion_duration",
+        "label": "t:aliens.design.settings_8_label",
+        "min": 300,
+        "max": 800,
+        "step": 50,
+        "default": 550,
+        "unit": "ms"
+      },
+      {
+        "type": "checkbox",
+        "id": "aliens_motion",
+        "label": "t:aliens.design.settings_9_label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "aliens_recently_viewed",
+        "label": "t:aliens.design.settings_10_label",
+        "default": false
+      }
+    ]
   }
 ]

@@ -1,0 +1,19 @@
+{% comment %}Render in a page-width container. Styling is in aliens-products.css.{% endcomment %}
+<nav class="aliens-breadcrumb" aria-label="Breadcrumb">
+  <ol role="list">
+    <li><a href="{{ routes.root_url }}">Home</a></li>
+    {% if product != blank %}
+      {% if collection != blank %}<li><a href="{{ collection.url }}">{{ collection.title | escape }}</a></li>{% endif %}
+      <li aria-current="page">{{ product.title | escape }}</li>
+    {% elsif collection != blank %}
+      <li aria-current="page">{{ collection.title | escape }}</li>
+    {% elsif article != blank %}
+      <li><a href="{{ blog.url }}">{{ blog.title | escape }}</a></li>
+      <li aria-current="page">{{ article.title | escape }}</li>
+    {% elsif blog != blank %}
+      <li aria-current="page">{{ blog.title | escape }}</li>
+    {% else %}
+      <li aria-current="page">{{ page_title | escape }}</li>
+    {% endif %}
+  </ol>
+</nav>
