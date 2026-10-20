@@ -7,7 +7,7 @@
     assign hero_priority = 'high'
   endif
 %}
-<div class="aliens-hero color-{{ section.settings.color_scheme }} gradient aliens-hero--{{ section.settings.alignment }}" style="--hero-height: {{ section.settings.height }}svh; --hero-overlay: {{ section.settings.overlay | divided_by: 100.0 }}; --hero-overlay-color: {{ section.settings.overlay_color }};">
+<div class="aliens-hero color-{{ section.settings.color_scheme }} gradient aliens-hero--{{ section.settings.alignment }}{% if request.page_type == 'index' and section.index == 1 %} aliens-hero--intro{% endif %}" style="--hero-height: {{ section.settings.height }}svh; --hero-overlay: {{ section.settings.overlay | divided_by: 100.0 }}; --hero-overlay-color: {{ section.settings.overlay_color }};">
   <div class="aliens-hero__media">
     {% if section.settings.video != blank %}
       <aliens-video>{{ section.settings.video | video_tag: image_size: '2000x', autoplay: false, loop: true, muted: true, controls: true, playsinline: true }}</aliens-video>
@@ -20,7 +20,7 @@
         sizes="100vw" width="1536" height="1024" alt="{{ section.settings.demo_alt | escape }}" loading="{{ hero_loading }}" fetchpriority="{{ hero_priority }}">
     {% endif %}
   </div>
-  <div class="aliens-hero__content page-width" data-aliens-reveal>
+  <div class="aliens-hero__content page-width"{% unless request.page_type == 'index' and section.index == 1 %} data-aliens-reveal{% endunless %}>
     {% if section.settings.eyebrow != blank %}<p class="aliens-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
     {% if section.settings.heading != blank %}<{{ section.settings.heading_tag }} class="aliens-hero__title">{{ section.settings.heading | escape | newline_to_br }}</{{ section.settings.heading_tag }}>{% endif %}
     <div class="aliens-hero__description rte">{{ section.settings.text }}</div>

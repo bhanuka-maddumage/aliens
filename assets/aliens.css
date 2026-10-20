@@ -140,7 +140,37 @@
   .aliens-theme .header__heading-logo-wrapper { width: var(--aliens-mobile-logo-width,100px); }
 }
 @keyframes aliens-reveal { from { opacity: .25; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes aliens-intro-image {
+  from { transform: scale(1.045); }
+  to { transform: scale(1); }
+}
+@keyframes aliens-intro-copy {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 @media (prefers-reduced-motion: no-preference) {
+  .aliens-motion .aliens-scroll-section {
+    transition: opacity var(--aliens-motion-duration,550ms) ease-out,
+      transform var(--aliens-motion-duration,550ms) cubic-bezier(.2,.7,.2,1);
+  }
+  .aliens-motion .aliens-scroll-pending { opacity: 0; transform: translateY(32px); }
+  .aliens-motion .aliens-scroll-visible,
+  .aliens-motion .aliens-scroll-pending:focus-within { opacity: 1; transform: none; }
+  /* A brief entrance, with no loading screen or blocked navigation. */
+  .aliens-motion .aliens-hero--intro .aliens-hero__media {
+    animation: aliens-intro-image 1200ms cubic-bezier(.2,.7,.2,1) both;
+  }
+  .aliens-motion .aliens-hero--intro .aliens-hero__content > *,
+  .aliens-motion .aliens-hero--intro .aliens-hero__foot {
+    animation: aliens-intro-copy 650ms cubic-bezier(.2,.7,.2,1) both;
+  }
+  .aliens-motion .aliens-hero--intro .aliens-hero__title { animation-delay: 100ms; }
+  .aliens-motion .aliens-hero--intro .aliens-hero__description { animation-delay: 200ms; }
+  .aliens-motion .aliens-hero--intro .aliens-actions { animation-delay: 300ms; }
+  .aliens-motion .aliens-hero--intro .aliens-hero__foot { animation-delay: 400ms; }
+  .aliens-motion .aliens-hero--intro:focus-within .aliens-hero__content > * {
+    animation: none;
+  }
   .aliens-motion .aliens-revealed { animation: aliens-reveal var(--aliens-motion-duration,550ms) var(--aliens-ease) both; }
 }
 @media (prefers-reduced-motion: reduce) {

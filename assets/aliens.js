@@ -1,5 +1,16 @@
 (() => {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const homepage = document.body.dataset.aliensPage === 'index';
+  const revealSection = section => {
+    section.classList.remove('aliens-scroll-pending');
+    section.classList.add('aliens-scroll-visible');
+    sectionObserver?.unobserve(section);
+  };
+  const sectionObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) revealSection(entry.target);
+    });
+  }, {threshold: 0, rootMargin: '0px 0px -40px 0px'}) : null;
   const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -8,13 +19,35 @@
     });
   }, {threshold: 0.12}) : null;
   function init(root = document) {
+    if (homepage && sectionObserver && document.body.classList.contains('aliens-motion') &&
+        !reduced.matches && !window.Shopify?.designMode) {
+      document.querySelectorAll('#MainContent > .shopify-section').forEach(section => {
+        if (root !== document && root !== section && !root.contains(section)) return;
+        if (section.querySelector('.aliens-hero--intro') ||
+            section.classList.contains('aliens-scroll-visible') ||
+            section.getBoundingClientRect().top < window.innerHeight) return;
+        section.classList.add('aliens-scroll-section', 'aliens-scroll-pending');
+        sectionObserver.observe(section);
+      });
+    }
     if (document.body.classList.contains('aliens-motion') && observer) {
-      root.querySelectorAll('[data-aliens-reveal]').forEach(el => observer.observe(el));
+      root.querySelectorAll('[data-aliens-reveal]').forEach(el => {
+        // Homepage sections animate as a whole, without a second nested reveal.
+        if (!homepage || !el.closest('#MainContent')) observer.observe(el);
+      });
     }
   }
   init();
   document.addEventListener('shopify:section:load', e => init(e.target));
   document.addEventListener('shopify:section:unload', e => e.target.querySelectorAll('[data-aliens-reveal]').forEach(el => observer?.unobserve(el)));
+  document.addEventListener('shopify:section:unload', e => sectionObserver?.unobserve(e.target));
+  document.addEventListener('focusin', e => {
+    const section = e.target.closest('.aliens-scroll-pending');
+    if (section) revealSection(section);
+  });
+  reduced.addEventListener('change', () => {
+    if (reduced.matches) document.querySelectorAll('.aliens-scroll-pending').forEach(revealSection);
+  });
 
   if (!customElements.get('aliens-video')) customElements.define('aliens-video', class extends HTMLElement {
     connectedCallback() {
