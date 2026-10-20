@@ -1,0 +1,146 @@
+<div class="color-{{ section.settings.color_scheme }} gradient"><div class="aliens-section page-width" style="--section-top: {{ section.settings.padding_top }}px; --section-bottom: {{ section.settings.padding_bottom }}px"><div class="aliens-section-heading" data-aliens-reveal>
+{% if section.settings.eyebrow != blank %}<p class="aliens-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+{% if section.settings.heading != blank %}<h2 class="aliens-title">{{ section.settings.heading | escape }}</h2>{% endif %}
+{% if section.settings.text != blank %}<div class="aliens-text rte">{{ section.settings.text }}</div>{% endif %}</div>{% render 'aliens-category-tiles', section: section %}</div></div>
+{% schema %}
+{
+  "name": "t:aliens.featured_collections.name",
+  "tag": "section",
+  "class": "aliens-section-wrapper",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:aliens.featured_collections.settings_0_label",
+      "default": "ALIENS / A DIFFERENT PERSPECTIVE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:aliens.featured_collections.settings_1_label",
+      "default": "IN YOUR ORBIT."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:aliens.featured_collections.settings_2_label"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:aliens.featured_collections.settings_3_label",
+      "options": [
+        {
+          "value": "editorial",
+          "label": "t:aliens.featured_collections.settings_3_options_0_label"
+        },
+        {
+          "value": "equal",
+          "label": "t:aliens.featured_collections.settings_3_options_1_label"
+        },
+        {
+          "value": "swipe",
+          "label": "t:aliens.featured_collections.settings_3_options_2_label"
+        }
+      ],
+      "default": "editorial"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:aliens.featured_collections.settings_4_label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:aliens.featured_collections.settings_5_label",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:aliens.featured_collections.settings_6_label",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "t:aliens.featured_collections.blocks_0_name",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "t:aliens.featured_collections.blocks_0_settings_0_label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:aliens.featured_collections.blocks_0_settings_1_label"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:aliens.featured_collections.blocks_0_settings_2_label"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:aliens.featured_collections.blocks_0_settings_3_label"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "t:aliens.featured_collections.blocks_0_settings_4_label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:aliens.featured_collections.blocks_0_settings_5_label"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "t:aliens.featured_collections.presets_0_name",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Headbands"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Hats & caps"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Helmets"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
