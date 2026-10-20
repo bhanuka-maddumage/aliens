@@ -1,4 +1,27 @@
-# Dawn
+# ALIENS — Shopify theme
+
+Custom Online Store 2.0 headwear storefront built on Shopify Dawn 13.0.0.
+
+Start development with `shopify theme dev --store aliens-apn7njcd.myshopify.com`.
+Use the preview and editor links printed by that command. Local saves update that
+development theme; the separate GitHub-connected theme updates when its branch is pushed.
+
+See [ALIENS setup guide](docs/ALIENS-SETUP.md) for catalog setup, section configuration,
+metafields, privacy preferences, image provenance, and the launch checklist.
+
+- Brand styles and interactions: `assets/aliens.css` and `assets/aliens.js`.
+- Default compositions: `templates/index.json`, `templates/product.json`, and `templates/page.*.json`.
+- Global controls: **Theme settings → ALIENS design system**, plus Dawn's color, typography and layout settings.
+- Custom sections include the campaign hero, category explorer, editorial stories,
+  comparisons, hotspots, finder, product specifications, recommendations, reviews and FAQs.
+- Run `shopify theme check`, `node tools/validate-theme.mjs` and JavaScript syntax checks
+  before syncing. `tools/localize-aliens.mjs` maintains the editor label translation keys.
+
+The supplied campaign image is illustrative AI-generated demo photography. Products,
+collection assignments, approved reviews, store policies and navigation must be configured
+in Shopify. No theme code creates inventory or policy content.
+
+## Original Dawn documentation
 
 [![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)
