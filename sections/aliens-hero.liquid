@@ -1,0 +1,231 @@
+
+{% liquid
+  assign hero_loading = 'lazy'
+  assign hero_priority = 'auto'
+  if section.index == 1
+    assign hero_loading = 'eager'
+    assign hero_priority = 'high'
+  endif
+%}
+<div class="aliens-hero color-{{ section.settings.color_scheme }} gradient aliens-hero--{{ section.settings.alignment }}" style="--hero-height: {{ section.settings.height }}svh; --hero-overlay: {{ section.settings.overlay | divided_by: 100.0 }}; --hero-overlay-color: {{ section.settings.overlay_color }};">
+  <div class="aliens-hero__media">
+    {% if section.settings.video != blank %}
+      <aliens-video>{{ section.settings.video | video_tag: image_size: '2000x', autoplay: false, loop: true, muted: true, controls: true, playsinline: true }}</aliens-video>
+    {% elsif section.settings.image != blank %}
+      {% if section.settings.mobile_image != blank %}<div class="aliens-hero__mobile">{{ section.settings.mobile_image | image_url: width: 1000 | image_tag: widths: '375,550,750,1000', sizes: '100vw', loading: hero_loading, fetchpriority: hero_priority }}</div>{% endif %}
+      <div {% if section.settings.mobile_image != blank %}class="aliens-hero__desktop"{% endif %}>{{ section.settings.image | image_url: width: 2400 | image_tag: widths: '750,1100,1500,2000,2400', sizes: '100vw', loading: hero_loading, fetchpriority: hero_priority }}</div>
+    {% elsif section.settings.demo_image %}
+      <img src="{{ 'aliens-campaign-demo.png' | asset_img_url: '1536x' }}"
+        srcset="{{ 'aliens-campaign-demo.png' | asset_img_url: '550x' }} 550w, {{ 'aliens-campaign-demo.png' | asset_img_url: '750x' }} 750w, {{ 'aliens-campaign-demo.png' | asset_img_url: '1100x' }} 1100w, {{ 'aliens-campaign-demo.png' | asset_img_url: '1536x' }} 1536w"
+        sizes="100vw" width="1536" height="1024" alt="{{ section.settings.demo_alt | escape }}" loading="{{ hero_loading }}" fetchpriority="{{ hero_priority }}">
+    {% endif %}
+  </div>
+  <div class="aliens-hero__content page-width" data-aliens-reveal>
+    {% if section.settings.eyebrow != blank %}<p class="aliens-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+    {% if section.settings.heading != blank %}<{{ section.settings.heading_tag }} class="aliens-hero__title">{{ section.settings.heading | escape | newline_to_br }}</{{ section.settings.heading_tag }}>{% endif %}
+    <div class="aliens-hero__description rte">{{ section.settings.text }}</div>
+    <div class="aliens-actions">{% for block in section.blocks %}{% if block.settings.link != blank %}<a class="aliens-button {% if block.settings.secondary %}aliens-button--outline{% endif %}" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>{{ block.settings.label | escape }} <span aria-hidden="true">↗</span></a>{% endif %}{% endfor %}</div>
+  </div>
+  <div class="aliens-hero__foot page-width"><span>{{ section.settings.caption | escape }}</span><span aria-hidden="true">↓</span><span>{{ section.settings.edition | escape }}</span></div>
+</div>
+{% schema %}
+{
+  "name": "t:aliens.aliens_hero.name",
+  "tag": "section",
+  "class": "aliens-section-wrapper",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:aliens.aliens_hero.settings_0_label",
+      "default": "INDEPENDENT BY DESIGN / ALIENS"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:aliens.aliens_hero.settings_1_label",
+      "default": "HEADWEAR FROM\nANOTHER PERSPECTIVE."
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "t:aliens.aliens_hero.settings_2_label",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:aliens.aliens_hero.settings_2_options_0_label"
+        },
+        {
+          "value": "h2",
+          "label": "t:aliens.aliens_hero.settings_2_options_1_label"
+        }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:aliens.aliens_hero.settings_3_label",
+      "default": "<p>Distinctive design. Everyday comfort. A different way to see the world.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:aliens.aliens_hero.settings_4_label"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "t:aliens.aliens_hero.settings_5_label"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "t:aliens.aliens_hero.settings_6_label"
+    },
+    {
+      "type": "checkbox",
+      "id": "demo_image",
+      "label": "t:aliens.aliens_hero.settings_7_label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "demo_alt",
+      "label": "t:aliens.aliens_hero.settings_8_label",
+      "default": "Editorial concept of a model wearing a black cap against concrete architecture"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "t:aliens.aliens_hero.settings_9_label",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "default": 85,
+      "unit": "vh"
+    },
+    {
+      "type": "range",
+      "id": "overlay",
+      "label": "t:aliens.aliens_hero.settings_10_label",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "default": 30,
+      "unit": "%"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "t:aliens.aliens_hero.settings_11_label",
+      "default": "#111111"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "t:aliens.aliens_hero.settings_12_label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:aliens.aliens_hero.settings_12_options_0_label"
+        },
+        {
+          "value": "center",
+          "label": "t:aliens.aliens_hero.settings_12_options_1_label"
+        },
+        {
+          "value": "right",
+          "label": "t:aliens.aliens_hero.settings_12_options_2_label"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "t:aliens.aliens_hero.settings_13_label",
+      "default": "FOR THE INDIVIDUAL. FOR THE EVERYDAY."
+    },
+    {
+      "type": "text",
+      "id": "edition",
+      "label": "t:aliens.aliens_hero.settings_14_label",
+      "default": "ALIENS / HEADWEAR"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:aliens.aliens_hero.settings_15_label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:aliens.aliens_hero.settings_16_label",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:aliens.aliens_hero.settings_17_label",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 64,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button",
+      "name": "t:aliens.aliens_hero.blocks_0_name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:aliens.aliens_hero.blocks_0_settings_0_label",
+          "default": "Shop the collection"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:aliens.aliens_hero.blocks_0_settings_1_label"
+        },
+        {
+          "type": "checkbox",
+          "id": "secondary",
+          "label": "t:aliens.aliens_hero.blocks_0_settings_2_label",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "t:aliens.aliens_hero.presets_0_name",
+      "blocks": [
+        {
+          "type": "button",
+          "settings": {
+            "label": "Explore all headwear",
+            "link": "shopify://collections/all"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
