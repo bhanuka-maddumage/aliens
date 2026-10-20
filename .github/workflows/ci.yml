@@ -6,12 +6,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Check Shopify credentials
+        env:
+          SHOP_ACCESS_TOKEN: ${{ secrets.SHOP_ACCESS_TOKEN }}
+          SHOP_CLIENT_ID: ${{ secrets.SHOP_CLIENT_ID }}
+          SHOP_CLIENT_SECRET: ${{ secrets.SHOP_CLIENT_SECRET }}
+        run: |
+          if [ -z "$SHOP_ACCESS_TOKEN" ] && { [ -z "$SHOP_CLIENT_ID" ] || [ -z "$SHOP_CLIENT_SECRET" ]; }; then
+            echo "::error::Configure SHOP_CLIENT_ID and SHOP_CLIENT_SECRET in repository Actions secrets, or provide an existing legacy SHOP_ACCESS_TOKEN."
+            exit 1
+          fi
       - name: Lighthouse
         uses: shopify/lighthouse-ci-action@v1
         with:
-          store: ${{ secrets.SHOP_STORE_OS2 }}
+          store: aliens-apn7njcd.myshopify.com
           password: ${{ secrets.SHOP_PASSWORD_OS2 }}
           access_token: ${{ secrets.SHOP_ACCESS_TOKEN }}
+          client_id: ${{ secrets.SHOP_CLIENT_ID }}
+          client_secret: ${{ secrets.SHOP_CLIENT_SECRET }}
           collection_handle: all
           lhci_github_app_token: ${{ secrets.LHCI_GITHUB_TOKEN }}
           pull_theme: ${{ secrets.SHOP_PULL_THEME }}
