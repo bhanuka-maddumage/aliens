@@ -8,9 +8,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
-            "text_alignment": "center",
-            "color_scheme": "scheme-1",
+            "text": "A DIFFERENT PERSPECTIVE. EVERY DAY.",
             "link": ""
           }
         }
@@ -25,7 +23,7 @@
         "color_scheme": "scheme-1",
         "logo_position": "middle-left",
         "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
+        "menu_type_desktop": "mega",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
         "enable_country_selector": true,
