@@ -8,14 +8,14 @@
         "footer-0": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
-            "menu": "footer"
+            "heading": "Explore",
+            "menu": "main-menu"
           }
         },
         "footer-1": {
           "type": "link_list",
           "settings": {
-            "heading": "Info",
+            "heading": "Good to know",
             "menu": "footer"
           }
         },
@@ -23,7 +23,7 @@
           "type": "text",
           "settings": {
             "heading": "ALIENS",
-            "subtext": "<p>Headwear from another perspective.<br>For the individual. For the everyday.</p>"
+            "subtext": "<p>Headwear from another perspective.<br>For the individual. For the everyday.</p><p>Explore the ALIENS sample collection.</p>"
           }
         }
       },

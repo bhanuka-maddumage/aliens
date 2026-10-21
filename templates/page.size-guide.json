@@ -7,13 +7,69 @@
     "guide": {
       "type": "faq-accordion",
       "settings": {
-        "heading": "SIZE & FIT",
-        "eyebrow": "FIND YOUR FIT"
+        "eyebrow": "FIND YOUR FIT",
+        "heading": "START WITH THE DETAILS.",
+        "text": "<p>Product-specific measurements are your best starting point. Shapes and sizing can vary between styles.</p>"
+      },
+      "blocks": {
+        "question0": {
+          "type": "question",
+          "settings": {
+            "question": "Measure for a hat or cap",
+            "answer": "<p>Use a soft measuring tape around your head where the hat will sit, keeping the tape level. Record the measurement in centimetres and compare it with the size range on the product page.</p>"
+          }
+        },
+        "question1": {
+          "type": "question",
+          "settings": {
+            "question": "Check the adjustment",
+            "answer": "<p>Look for the closure and adjustment details on the product page. An adjustable style still has a size range; check it against your measurement.</p>"
+          }
+        },
+        "question2": {
+          "type": "question",
+          "settings": {
+            "question": "Choose a headband",
+            "answer": "<p>Consider the band width, material and listed size. Decide whether you prefer a slim accent or a wider shape. Check the product details for stretch and fit information.</p>"
+          }
+        },
+        "question3": {
+          "type": "question",
+          "settings": {
+            "question": "Choose a helmet",
+            "answer": "<p>Follow the specific manufacturer sizing and fitting instructions for the activity. Do not use cap sizing or sample imagery to judge a helmet fit. Confirm the product specifications before selecting a helmet.</p>"
+          }
+        },
+        "question4": {
+          "type": "question",
+          "settings": {
+            "question": "Need more information?",
+            "answer": "<p>If a size range, measurement or care instruction is missing, <a href=\"/pages/contact\">contact us</a> with the product name before ordering.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question0",
+        "question1",
+        "question2",
+        "question3",
+        "question4"
+      ]
+    },
+    "story": {
+      "type": "product-story",
+      "settings": {
+        "heading": "MAKE IT YOUR OWN.",
+        "text": "<p>A considered fit starts with the right information. Explore the collection and check the details on the piece you love.</p>",
+        "image": "shopify://shop_images/aliens-web-headbands.png",
+        "label": "Explore headbands",
+        "link": "/collections/headbands"
       }
     }
   },
   "order": [
     "main",
-    "guide"
+    "guide",
+    "story"
   ]
 }

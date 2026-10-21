@@ -36,8 +36,8 @@
 .aliens-hero__foot { position: absolute; left: 0; right: 0; bottom: 2.4rem; display: flex; justify-content: space-between; gap: 1rem; width: 100%; font: 1rem/1.5 ui-monospace,monospace; letter-spacing: .08em; }
 .aliens-hero__mobile { display: none !important; }
 .aliens-category-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 2rem; }
-.aliens-category-grid--editorial { grid-template-columns: 1.35fr 1fr 1fr; }
-.aliens-category-grid--editorial .aliens-category:nth-child(3n+2) { padding-top: 5rem; }
+/* Each successive editorial card is 1 / 1.35 (about 74%) of the previous card. */
+.aliens-category-grid--editorial { grid-template-columns: 1.35fr 1fr .74074074fr; align-items: start; }
 .aliens-category__link { color: inherit; text-decoration: none; display: block; }
 .aliens-category__image { aspect-ratio: 4/5; background: var(--aliens-paper); overflow: hidden; }
 .aliens-category__image img { width: 100%; height: 100%; object-fit: cover; transition: transform 350ms var(--aliens-ease); }
@@ -50,6 +50,10 @@
 .aliens-category__caption h3 { margin: 0; font-size: 2rem; font-weight: 600; }
 .aliens-category__caption p { margin: .8rem 0; }
 .aliens-category__caption .aliens-eyebrow { font-size: .95rem; }
+.aliens-category-grid--equal .aliens-category__caption,
+.aliens-category-grid--editorial .aliens-category__caption { align-items: flex-start; }
+.aliens-category-grid--equal .aliens-category__caption .aliens-arrow,
+.aliens-category-grid--editorial .aliens-category__caption .aliens-arrow { flex: 0 0 4rem; margin-top: 2.4rem; }
 .aliens-products-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--product-columns,4),minmax(0,1fr)); gap: var(--aliens-grid-gap,20px); }
 .aliens-products-grid > li { min-width: 0; }
 .aliens-products-grid .card__inner { background: var(--aliens-paper); }
@@ -121,9 +125,10 @@
   .aliens-hero__foot { font-size: .8rem; }
   .aliens-hero__foot span:last-child { display: none; }
   .aliens-category-grid, .aliens-category-grid--editorial { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .aliens-category-grid--equal { grid-template-columns: minmax(0,1fr); gap: 2rem; }
+  .aliens-category-grid--equal .aliens-category__image { aspect-ratio: 1; }
   .aliens-category-grid--editorial .aliens-category:first-child { grid-column: 1/-1; }
   .aliens-category-grid--editorial .aliens-category:first-child .aliens-category__image { aspect-ratio: 4/3; }
-  .aliens-category-grid--editorial .aliens-category:nth-child(3n+2) { padding-top: 0; }
   .aliens-category-grid--swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; }
   .aliens-category-grid--swipe .aliens-category { flex: 0 0 78%; scroll-snap-align: start; }
   .aliens-category__caption h3 { font-size: 1.7rem; }

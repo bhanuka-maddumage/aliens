@@ -1,0 +1,22 @@
+{
+  "method": "Built-in image generation",
+  "purpose": "Illustrative sample imagery; one shared image per homepage category",
+  "images": [
+    {
+      "file": "aliens-demo-headband.png",
+      "category": "Headbands",
+      "subject": "A single black fabric fashion headband, broad soft band with a subtle central twist, no head or mannequin"
+    },
+    {
+      "file": "aliens-demo-cap.png",
+      "category": "Hats & caps",
+      "subject": "A single black six-panel baseball cap, curved brim, minimal unbranded design"
+    },
+    {
+      "file": "aliens-demo-helmet.png",
+      "category": "Helmets",
+      "subject": "A single charcoal urban bicycle helmet concept, rounded shell, small ventilation openings and black chin strap, no certification marks"
+    }
+  ],
+  "promptTemplate": "Use case: product-mockup. Asset type: Shopify sample product catalog image. Create one square premium ecommerce studio product photograph. Subject: {subject}. The full single product is centered in a three-quarter view, occupying 70% of the frame, on a warm off-white seamless backdrop with a soft realistic contact shadow. Clean diffuse studio lighting, realistic materials, crisp edges, understated monochrome styling. This is an illustrative fictional demo product. No text, no logos, no watermark, no people, no collage, no other objects."
+}

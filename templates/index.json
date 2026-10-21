@@ -2,45 +2,82 @@
   "sections": {
     "hero": {
       "type": "aliens-hero",
-      "settings": {
-        "color_scheme": "scheme-3"
-      },
       "blocks": {
         "shop": {
           "type": "button",
           "settings": {
             "label": "Shop all headwear",
-            "link": "shopify://collections/all"
+            "link": "shopify://collections/all",
+            "secondary": false
+          }
+        },
+        "about": {
+          "type": "button",
+          "settings": {
+            "label": "Meet ALIENS",
+            "link": "/pages/about",
+            "secondary": true
           }
         }
       },
       "block_order": [
-        "shop"
-      ]
+        "shop",
+        "about"
+      ],
+      "settings": {
+        "eyebrow": "ALIENS / THE EVERYDAY EDIT",
+        "heading": "YOUR WORLD.\nYOUR PERSPECTIVE.",
+        "heading_tag": "h1",
+        "text": "<p>Headbands, hats and caps with a point of view. Find your signature, then make it your own.</p>",
+        "image": "shopify://shop_images/aliens-web-campaign.png",
+        "mobile_image": "shopify://shop_images/aliens-web-about.png",
+        "demo_image": false,
+        "demo_alt": "Editorial concept of a model wearing a black cap against concrete architecture",
+        "height": 85,
+        "overlay": 35,
+        "overlay_color": "#111111",
+        "alignment": "left",
+        "caption": "FOR THE INDIVIDUAL. FOR THE EVERYDAY.",
+        "edition": "THE ALIENS EDIT",
+        "color_scheme": "scheme-3",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
     },
     "categories": {
       "type": "category-explorer",
-      "settings": {},
       "blocks": {
         "category0": {
           "type": "category",
           "settings": {
+            "collection": "headbands",
+            "image": "shopify://shop_images/aliens-web-headbands.png",
             "title": "Headbands",
-            "label": "01 / THE COLLECTION"
+            "label": "01 / THE COLLECTION",
+            "description": "Small details. A fresh point of view.",
+            "link": "/collections/headbands"
           }
         },
         "category1": {
           "type": "category",
           "settings": {
+            "collection": "hats-caps",
+            "image": "shopify://shop_images/aliens-web-campaign_3ce289c6-165f-488a-9b28-aff7459d4ea5.png",
             "title": "Hats & caps",
-            "label": "02 / THE COLLECTION"
+            "label": "02 / THE COLLECTION",
+            "description": "Your daily signature, from the brim up.",
+            "link": "/collections/hats-caps"
           }
         },
         "category2": {
           "type": "category",
           "settings": {
+            "collection": "helmets",
+            "image": "shopify://shop_images/aliens-web-helmets.png",
             "title": "Helmets",
-            "label": "03 / THE COLLECTION"
+            "label": "03 / THE COLLECTION",
+            "description": "Explore the helmet concept collection.",
+            "link": "/collections/helmets"
           }
         }
       },
@@ -48,61 +85,141 @@
         "category0",
         "category1",
         "category2"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "THREE WAYS TO FIND YOUR FORM",
+        "heading": "CHOOSE YOUR DIRECTION.",
+        "text": "<p>Start with a silhouette. Make the rest your own.</p>",
+        "layout": "editorial",
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
     },
     "products": {
       "type": "featured-products",
       "settings": {
-        "collection": "all",
         "eyebrow": "THE CURRENT ROTATION",
-        "heading": "FIND YOUR EVERYDAY."
+        "heading": "FIND YOUR EVERYDAY.",
+        "text": "",
+        "collection": "all",
+        "product_count": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "image_ratio": "portrait",
+        "secondary_image": true,
+        "show_rating": false,
+        "quick_add": "standard",
+        "link_label": "View the collection",
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
     "manifesto": {
       "type": "brand-manifesto",
       "settings": {
-        "color_scheme": "scheme-3",
         "eyebrow": "THE ALIENS PERSPECTIVE",
-        "text": "<p>Style is personal. Your headwear should be too. Explore a different perspective on what you wear every day.</p>",
+        "heading": "A LITTLE DIFFERENT.\nENTIRELY YOU.",
+        "text": "<p>ALIENS is a place for individual expression. Clean silhouettes, a quiet palette and room to bring your own perspective. There is no single way to belong.</p>",
+        "image": "shopify://shop_images/aliens-web-about.png",
+        "collection": "",
+        "product": "",
+        "label": "Our story",
+        "link": "/pages/about",
+        "image_position": "right",
         "large_type": true,
-        "image_position": "right"
+        "color_scheme": "scheme-3",
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
     "editorial": {
       "type": "collection-editorial",
       "settings": {
-        "eyebrow": "YOUR ROUTINE. YOUR RULES.",
-        "heading": "BUILT FOR YOUR OWN ORBIT.",
-        "text": "<p>From the everyday to the unexpected. Find the pieces that feel like you.</p>",
-        "link": "shopify://collections/all"
+        "eyebrow": "THE EVERYDAY EDIT",
+        "heading": "THE FINISHING TOUCH.",
+        "text": "<p>A black cap. A cream knit. A simple headband. Build your look around the pieces you keep coming back to.</p>",
+        "image": "shopify://shop_images/aliens-web-details.png",
+        "collection": "",
+        "product": "",
+        "label": "Explore the collection",
+        "link": "/collections/all",
+        "image_position": "left",
+        "large_type": false,
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
     "technical": {
       "type": "helmet-feature-showcase",
-      "settings": {},
-      "disabled": true
+      "disabled": true,
+      "settings": {
+        "product": "",
+        "eyebrow": "A closer look",
+        "heading": "DETAILS MAKE THE DIFFERENCE.",
+        "heading_size": "h1",
+        "text": "",
+        "button_label": "Explore the product",
+        "show_metafields": true,
+        "image_right": false,
+        "open_first": true,
+        "color_scheme": "",
+        "padding": 64
+      }
     },
     "discovery": {
       "type": "product-discovery",
+      "disabled": true,
       "settings": {
-        "color_scheme": "scheme-2"
-      },
-      "disabled": true
+        "eyebrow": "ALIENS / A DIFFERENT PERSPECTIVE",
+        "heading": "WHERE WILL YOU GO?",
+        "text": "",
+        "layout": "editorial",
+        "color_scheme": "scheme-2",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
     },
     "reviews": {
       "type": "reviews-carousel",
-      "settings": {},
-      "disabled": true
+      "disabled": true,
+      "settings": {
+        "eyebrow": "",
+        "heading": "FROM YOUR ORBIT.",
+        "text": "",
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "previous_label": "Previous",
+        "next_label": "Next"
+      }
     },
     "social": {
       "type": "social-gallery",
-      "settings": {},
-      "disabled": true
+      "disabled": true,
+      "settings": {
+        "eyebrow": "",
+        "heading": "SEEN IN YOUR WORLD.",
+        "text": "",
+        "color_scheme": "",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "columns": "4",
+        "link_label": "Explore this image"
+      }
     },
     "newsletter": {
       "type": "newsletter-signup",
       "settings": {
-        "color_scheme": "scheme-3"
+        "eyebrow": "STAY IN OUR ORBIT",
+        "heading": "A FRESH PERSPECTIVE.",
+        "text": "<p>Sign up for new collection notes, styling ideas and updates from ALIENS.</p>",
+        "note": "<p>Join when you like. Unsubscribe whenever you need.</p>",
+        "color_scheme": "scheme-3",
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     }
   },

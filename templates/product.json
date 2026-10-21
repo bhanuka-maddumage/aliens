@@ -11,10 +11,12 @@
           }
         },
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {}
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -23,7 +25,8 @@
           }
         },
         "quantity_selector": {
-          "type": "quantity_selector"
+          "type": "quantity_selector",
+          "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
@@ -33,7 +36,8 @@
           }
         },
         "description": {
-          "type": "description"
+          "type": "description",
+          "settings": {}
         },
         "share": {
           "type": "share",
@@ -54,9 +58,9 @@
       ],
       "settings": {
         "enable_sticky_info": true,
-        "gallery_layout": "thumbnail_slider",
         "media_size": "large",
         "constrain_to_viewport": true,
+        "gallery_layout": "thumbnail_slider",
         "mobile_thumbnails": "show",
         "hide_variants": true,
         "enable_video_looping": false,
@@ -91,12 +95,24 @@
     "recent": {
       "type": "recently-viewed",
       "settings": {}
+    },
+    "story": {
+      "type": "product-story",
+      "settings": {
+        "heading": "YOUR STYLE. YOUR SIGNATURE.",
+        "text": "<p>Discover the ALIENS perspective: understated colour, distinctive shapes and room for your own expression. Check each product description for the details that matter to you.</p>",
+        "image": "shopify://shop_images/aliens-web-details.png",
+        "eyebrow": "THE ALIENS EDIT",
+        "label": "Size & fit guide",
+        "link": "/pages/size-guide"
+      }
     }
   },
   "order": [
     "main",
     "specifications",
     "complementary",
+    "story",
     "related",
     "recent"
   ]

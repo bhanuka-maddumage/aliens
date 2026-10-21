@@ -1,15 +1,55 @@
 {
   "sections": {
-    "main": {
-      "type": "main-list-collections",
+    "categories": {
+      "type": "category-explorer",
       "settings": {
-        "title": "Collections",
-        "sort": "alphabetical",
-        "image_ratio": "square"
-      }
+        "eyebrow": "THREE WAYS TO FIND YOUR FORM",
+        "heading": "THE COLLECTIONS.",
+        "text": "<p>Start with a silhouette. Make the rest your own.</p>"
+      },
+      "blocks": {
+        "category0": {
+          "type": "category",
+          "settings": {
+            "title": "Headbands",
+            "label": "01 / THE COLLECTION",
+            "collection": "headbands",
+            "image": "shopify://shop_images/aliens-web-headbands.png",
+            "link": "/collections/headbands",
+            "description": "Small details. A fresh point of view."
+          }
+        },
+        "category1": {
+          "type": "category",
+          "settings": {
+            "title": "Hats & caps",
+            "label": "02 / THE COLLECTION",
+            "collection": "hats-caps",
+            "image": "shopify://shop_images/aliens-web-campaign.png",
+            "link": "/collections/hats-caps",
+            "description": "Your daily signature, from the brim up."
+          }
+        },
+        "category2": {
+          "type": "category",
+          "settings": {
+            "title": "Helmets",
+            "label": "03 / THE COLLECTION",
+            "collection": "helmets",
+            "image": "shopify://shop_images/aliens-web-helmets.png",
+            "link": "/collections/helmets",
+            "description": "Explore the helmet concept collection."
+          }
+        }
+      },
+      "block_order": [
+        "category0",
+        "category1",
+        "category2"
+      ]
     }
   },
   "order": [
-    "main"
+    "categories"
   ]
 }

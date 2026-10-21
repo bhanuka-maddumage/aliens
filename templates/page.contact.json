@@ -16,10 +16,23 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "story": {
+      "type": "product-story",
+      "settings": {
+        "heading": "LET’S TALK HEADWEAR.",
+        "text": "<p>Questions about a style, a size or a product detail? Send a note using the form below. Include the product name so we can point you in the right direction.</p>",
+        "image": "shopify://shop_images/aliens-web-headbands.png",
+        "eyebrow": "GET IN TOUCH",
+        "image_position": "right",
+        "padding_top": 24,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "main",
+    "story",
     "form"
   ]
 }

@@ -1,0 +1,30 @@
+{
+  "method": "Built-in image generation",
+  "images": [
+    {
+      "file": "aliens-web-campaign.png",
+      "source": "C:\\Users\\Smashy\\.codex\\generated_images\\01a15cdf-8ef3-71f1-854c-32cca1e3352e\\exec-960bc485-b19f-45fb-80b3-0f32ef577e97.png",
+      "prompt": "Use case: ads-marketing. Asset type: ALIENS headwear concept-store website photography. Wide landscape 3:2 fashion campaign photograph. Adult South Asian male model in charcoal jacket and an unbranded black baseball cap, placed on the right third of the composition against sculptural warm gray concrete architecture. Left half is quiet dark negative space for white headline overlay. Head and cap fully inside frame. Natural late-afternoon directional light. Waist-up, cinematic yet restrained. Palette is charcoal, black, off-white and warm gray. Photorealistic premium editorial photography with subtle film grain, convincing fabric texture. Illustrative fictional demo campaign, no existing brand logos, no text, no watermark, no collage, no claims or badges."
+    },
+    {
+      "file": "aliens-web-headbands.png",
+      "source": "C:\\Users\\Smashy\\.codex\\generated_images\\01a15cdf-8ef3-71f1-854c-32cca1e3352e\\exec-feae7554-9ce0-4ae3-84db-b7775ed0565f.png",
+      "prompt": "Use case: ads-marketing. Asset type: ALIENS headwear concept-store website photography. Square premium fashion editorial portrait of an adult South Asian woman wearing a wide black fabric twisted headband and a cream top. Three-quarter profile, headband fully visible with space above the head. Smooth warm-gray concrete backdrop, soft side light, natural skin texture, contemporary minimal styling. Palette is charcoal, black, off-white and warm gray. Photorealistic premium editorial photography with subtle film grain, convincing fabric texture. Illustrative fictional demo campaign, no existing brand logos, no text, no watermark, no collage, no claims or badges."
+    },
+    {
+      "file": "aliens-web-helmets.png",
+      "source": "C:\\Users\\Smashy\\.codex\\generated_images\\01a15cdf-8ef3-71f1-854c-32cca1e3352e\\exec-1f393ee2-afae-4788-b0c7-0384cbb8143e.png",
+      "prompt": "Use case: ads-marketing. Asset type: ALIENS headwear concept-store website photography. Square editorial still-life of an unbranded matte charcoal urban bicycle helmet concept on a low warm-gray concrete plinth. Full helmet and black straps visible, three-quarter side view, gentle architectural shadow, spacious composition. No bike, no person, no performance or certification markings. Palette is charcoal, black, off-white and warm gray. Photorealistic premium editorial photography with subtle film grain, convincing fabric texture. Illustrative fictional demo campaign, no existing brand logos, no text, no watermark, no collage, no claims or badges."
+    },
+    {
+      "file": "aliens-web-details.png",
+      "source": "C:\\Users\\Smashy\\.codex\\generated_images\\01a15cdf-8ef3-71f1-854c-32cca1e3352e\\exec-158b5fde-ec13-4112-84ca-0f08e80cd70a.png",
+      "prompt": "Use case: ads-marketing. Asset type: ALIENS headwear concept-store website photography. Landscape 3:2 overhead editorial still-life of a black baseball cap, a folded cream ribbed beanie, and a black fabric twisted headband, arranged with breathing room on warm gray textured stone. Tactile fabrics and precise natural shadows, pared-back premium fashion magazine composition. Palette is charcoal, black, off-white and warm gray. Photorealistic premium editorial photography with subtle film grain, convincing fabric texture. Illustrative fictional demo campaign, no existing brand logos, no text, no watermark, no collage, no claims or badges."
+    },
+    {
+      "file": "aliens-web-about.png",
+      "source": "C:\\Users\\Smashy\\.codex\\generated_images\\01a15cdf-8ef3-71f1-854c-32cca1e3352e\\exec-097fb5f9-6853-40df-8678-9a38df01fba9.png",
+      "prompt": "Use case: ads-marketing. Asset type: ALIENS headwear concept-store website photography. Portrait 4:5 fashion editorial of two adult friends, a South Asian woman wearing a black fabric headband and a South Asian man wearing a black baseball cap, standing naturally against minimal warm concrete architecture. Cream and charcoal outfits, candid calm expressions, waist-up composition, both headwear pieces fully visible, refined natural lighting. Palette is charcoal, black, off-white and warm gray. Photorealistic premium editorial photography with subtle film grain, convincing fabric texture. Illustrative fictional demo campaign, no existing brand logos, no text, no watermark, no collage, no claims or badges."
+    }
+  ]
+}

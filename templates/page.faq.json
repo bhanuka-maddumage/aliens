@@ -6,11 +6,78 @@
     },
     "faq": {
       "type": "faq-accordion",
-      "settings": {}
+      "settings": {
+        "eyebrow": "A LITTLE CLARITY",
+        "heading": "GOOD QUESTIONS.",
+        "text": "<p>Find your way around the ALIENS collection.</p>"
+      },
+      "blocks": {
+        "question0": {
+          "type": "question",
+          "settings": {
+            "question": "What can I find at ALIENS?",
+            "answer": "<p>Explore three collections: Headbands, Hats & caps, and Helmets. Use the collection links to browse by shape, or view the full edit in Shop all.</p>"
+          }
+        },
+        "question1": {
+          "type": "question",
+          "settings": {
+            "question": "How do I choose a size?",
+            "answer": "<p>Check the measurements and fit information on the individual product page. Our <a href=\"/pages/size-guide\">size and fit guide</a> explains where to start. If a measurement is missing, ask us before ordering.</p>"
+          }
+        },
+        "question2": {
+          "type": "question",
+          "settings": {
+            "question": "Are these the final product photographs?",
+            "answer": "<p>This preview uses sample products and AI-generated imagery to demonstrate the ALIENS collection. Images are illustrative and may not show every listed colour or detail.</p>"
+          }
+        },
+        "question3": {
+          "type": "question",
+          "settings": {
+            "question": "Where can I check delivery and returns?",
+            "answer": "<p>Use the store policy links when available, or <a href=\"/pages/contact\">contact us</a> to confirm the terms that apply to your order.</p>"
+          }
+        },
+        "question4": {
+          "type": "question",
+          "settings": {
+            "question": "Where can I find helmet specifications?",
+            "answer": "<p>Use the individual product details and manufacturer documentation to confirm intended use, sizing and certification. The sample helmet listings and concept images do not establish protective performance.</p>"
+          }
+        },
+        "question5": {
+          "type": "question",
+          "settings": {
+            "question": "How can I ask another question?",
+            "answer": "<p>Visit our <a href=\"/pages/contact\">contact page</a>. Include the product name and the detail you would like us to clarify.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question0",
+        "question1",
+        "question2",
+        "question3",
+        "question4",
+        "question5"
+      ]
+    },
+    "story": {
+      "type": "collection-editorial",
+      "settings": {
+        "heading": "FIND YOUR NEXT FAVOURITE.",
+        "text": "<p>Explore the shapes, colours and small details that make a look your own.</p>",
+        "image": "shopify://shop_images/aliens-web-details.png",
+        "label": "Browse all headwear",
+        "link": "/collections/all"
+      }
     }
   },
   "order": [
     "main",
-    "faq"
+    "faq",
+    "story"
   ]
 }

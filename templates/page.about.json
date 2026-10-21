@@ -8,13 +8,23 @@
       "type": "brand-manifesto",
       "settings": {
         "color_scheme": "scheme-3",
-        "text": "<p>Headwear from another perspective. For the individual. For the everyday.</p>"
+        "text": "<p>We see headwear as a small canvas for personal style. Something familiar, worn your way. ALIENS brings together considered shapes, a pared-back palette and a different perspective on the everyday.</p>",
+        "heading": "INDIVIDUAL BY NATURE.",
+        "image": "shopify://shop_images/aliens-web-about.png",
+        "eyebrow": "MEET ALIENS",
+        "large_type": true
       }
     },
     "story": {
       "type": "product-story",
       "settings": {
-        "heading": "YOUR STORY STARTS WITH YOU."
+        "heading": "FIND YOUR EVERYDAY.",
+        "text": "<p>Start with what feels like you: a twist of fabric, a curved brim, a clean silhouette. Explore the collection, mix it with your favourites and let your own style lead.</p>",
+        "image": "shopify://shop_images/aliens-web-details.png",
+        "eyebrow": "YOUR ROUTINE. YOUR RULES.",
+        "label": "Shop all headwear",
+        "link": "/collections/all",
+        "image_position": "left"
       }
     }
   },
