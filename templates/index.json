@@ -1,9 +1,28 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "aliens-hero",
       "settings": {
-        "color_scheme": "scheme-3"
+        "color_scheme": "scheme-3",
+        "eyebrow": "ALIENS / THE EVERYDAY EDIT",
+        "heading": "YOUR WORLD.\nYOUR PERSPECTIVE.",
+        "text": "<p>Headbands, hats and caps with a point of view. Find your signature, then make it your own.</p>",
+        "image": "shopify://shop_images/aliens-web-campaign.png",
+        "mobile_image": "shopify://shop_images/aliens-web-about.png",
+        "demo_image": false,
+        "overlay": 35,
+        "caption": "FOR THE INDIVIDUAL. FOR THE EVERYDAY.",
+        "edition": "THE ALIENS EDIT",
+        "height": 85
       },
       "blocks": {
         "shop": {
@@ -12,35 +31,60 @@
             "label": "Shop all headwear",
             "link": "shopify://collections/all"
           }
+        },
+        "about": {
+          "type": "button",
+          "settings": {
+            "label": "Meet ALIENS",
+            "link": "/pages/about",
+            "secondary": true
+          }
         }
       },
       "block_order": [
-        "shop"
+        "shop",
+        "about"
       ]
     },
     "categories": {
       "type": "category-explorer",
-      "settings": {},
+      "settings": {
+        "eyebrow": "THREE WAYS TO FIND YOUR FORM",
+        "heading": "CHOOSE YOUR DIRECTION.",
+        "text": "<p>Start with a silhouette. Make the rest your own.</p>"
+      },
       "blocks": {
         "category0": {
           "type": "category",
           "settings": {
             "title": "Headbands",
-            "label": "01 / THE COLLECTION"
+            "label": "01 / THE COLLECTION",
+            "collection": "headbands",
+            "image": "shopify://shop_images/aliens-web-headbands.png",
+            "link": "/collections/headbands",
+            "description": "Small details. A fresh point of view."
           }
         },
         "category1": {
           "type": "category",
           "settings": {
             "title": "Hats & caps",
-            "label": "02 / THE COLLECTION"
+            "label": "02 / THE COLLECTION",
+            "collection": "hats-caps",
+            "image": "shopify://shop_images/aliens-web-campaign.png",
+            "link": "/collections/hats-caps",
+            "description": "Your daily signature, from the brim up."
           }
         },
         "category2": {
           "type": "category",
           "settings": {
             "title": "Helmets",
-            "label": "03 / THE COLLECTION"
+            "label": "03 / THE COLLECTION",
+            "collection": "helmets",
+            "image": "shopify://shop_images/aliens-web-helmets.png",
+            "link": "/collections/helmets",
+            "description": "Explore the helmet concept collection."
           }
         }
       },
@@ -63,18 +107,25 @@
       "settings": {
         "color_scheme": "scheme-3",
         "eyebrow": "THE ALIENS PERSPECTIVE",
-        "text": "<p>Style is personal. Your headwear should be too. Explore a different perspective on what you wear every day.</p>",
+        "text": "<p>ALIENS is a place for individual expression. Clean silhouettes, a quiet palette and room to bring your own perspective. There is no single way to belong.</p>",
         "large_type": true,
-        "image_position": "right"
+        "image_position": "right",
+        "heading": "A LITTLE DIFFERENT.\nENTIRELY YOU.",
+        "image": "shopify://shop_images/aliens-web-about.png",
+        "label": "Our story",
+        "link": "/pages/about"
       }
     },
     "editorial": {
       "type": "collection-editorial",
       "settings": {
-        "eyebrow": "YOUR ROUTINE. YOUR RULES.",
-        "heading": "BUILT FOR YOUR OWN ORBIT.",
-        "text": "<p>From the everyday to the unexpected. Find the pieces that feel like you.</p>",
-        "link": "shopify://collections/all"
+        "eyebrow": "THE EVERYDAY EDIT",
+        "heading": "THE FINISHING TOUCH.",
+        "text": "<p>A black cap. A cream knit. A simple headband. Build your look around the pieces you keep coming back to.</p>",
+        "link": "/collections/all",
+        "image": "shopify://shop_images/aliens-web-details.png",
+        "label": "Explore the collection",
+        "image_position": "left"
       }
     },
     "technical": {
@@ -102,7 +153,11 @@
     "newsletter": {
       "type": "newsletter-signup",
       "settings": {
-        "color_scheme": "scheme-3"
+        "color_scheme": "scheme-3",
+        "eyebrow": "STAY IN OUR ORBIT",
+        "heading": "A FRESH PERSPECTIVE.",
+        "text": "<p>Sign up for new collection notes, styling ideas and updates from ALIENS.</p>",
+        "note": "<p>Join when you like. Unsubscribe whenever you need.</p>"
       }
     }
   },
